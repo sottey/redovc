@@ -10,9 +10,7 @@ func init() {
 		initCmdDesc     = "Initializes a new todo list in the current directory"
 		initCmdLongDesc = `Initializes a new todo list in the current directory.
 
-This will create a .todos.json in the directory you're in.  You can then start adding todos to it.
-
-For more info, see https://ultodo.io/docs/cli/managing_lists`
+This will create a .todos.json in the directory you're in.  You can then start adding todos to it.`
 	)
 
 	var initCmd = &cobra.Command{

@@ -3,7 +3,6 @@ package ultodo
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/jinzhu/copier"
@@ -117,7 +116,7 @@ func (e *EventLogger) loadSyncedLists() {
 		return
 	}
 
-	data, _ := ioutil.ReadFile(e.syncedListsFile())
+	data, _ := os.ReadFile(e.syncedListsFile())
 	err := json.Unmarshal(data, &e.SyncedLists)
 	if err != nil {
 		panic(err)
@@ -172,7 +171,7 @@ func (e *EventLogger) WriteSyncedLists() {
 		}
 	}
 
-	if err := ioutil.WriteFile(e.syncedListsFile(), data, 0644); err != nil {
+	if err := os.WriteFile(e.syncedListsFile(), data, 0644); err != nil {
 		panic(err)
 	}
 }

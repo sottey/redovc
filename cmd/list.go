@@ -134,9 +134,7 @@ func init() {
 `
 		listCmdLongDesc = `List todos, optionally providing a filter.
 
-When listing todos, you can apply powerful filters, and perform grouping.
-
-See the full docs at https://ultodo.io/docs/cli/showing_tasks`
+When listing todos, you can apply powerful filters, and perform grouping.`
 	)
 
 	var listCmd = &cobra.Command{
@@ -153,6 +151,6 @@ See the full docs at https://ultodo.io/docs/cli/showing_tasks`
 	rootCmd.AddCommand(listCmd)
 	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in ultodo output")
 	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in ultodo output")
-	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. ")
+	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing.")
 	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status")
 }

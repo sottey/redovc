@@ -19,9 +19,7 @@ func init() {
 
 		long = `Prioritize and un-prioritize todos.
 
-  Todos with the priority flag will be highlighted, and will be at the top of your list.
-
-  For more info, see https://ultodo.io/docs/cli/managing_tasks/#prioritizingunprioritizing-todos`
+  Todos with the priority flag will be highlighted, and will be at the top of your list.`
 	)
 
 	var prioritizeCmd = &cobra.Command{

@@ -24,14 +24,10 @@ func init() {
     ultodo a buy flowers for mom due:may12
     ultodo get halloween candy due:31oct
 
-  See the full docs at https://ultodo.io/docs/cli/managing_tasks/#adding-todos
-
   Todos can also recur.  Set the 'recur' directive to control recurrence:
     ultodo a Daily standup recur:weekdays
     ultodo a 1o1 meeting with jim recur:weekly
-
-  For the full documentation on recurrence, see the docs:
-  https://ultodo.io/docs/cli/recurrence`
+`
 	)
 
 	var addCmd = &cobra.Command{

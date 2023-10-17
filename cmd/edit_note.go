@@ -11,7 +11,7 @@ import (
 func init() {
 	var (
 		cmdDesc     = "Edits notes on a todo."
-		longCmdDesc = "Edits notes on a todo.\n For more info, see https://ultodo.io/docs/cli/managing_tasks/#notes-management"
+		longCmdDesc = "Edits notes on a todo."
 		example     = `  To see your todos with notes:
     ultodo list --notes
 

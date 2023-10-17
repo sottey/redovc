@@ -28,10 +28,7 @@ func init() {
 
   ultodo archive gc
   ultodo ar gc
-	  Run garbage collection. Delete all archived todos and reclaim ids
-
-  See the full docs here:
-  https://ultodo.io/docs/cli/managing_tasks`
+	  Run garbage collection. Delete all archived todos and reclaim ids`
 	)
 
 	var archiveCmd = &cobra.Command{
@@ -57,9 +54,8 @@ func init() {
 	var archiveCompletedCmd = &cobra.Command{
 		Use:     "c",
 		Example: "  ultodo archive completed\n  ultodo ar c",
-		Short:   "Achives all completed todos.",
-		Long: `Achives all completed todos.
-For more info, see https://ultodo.io/docs/cli/managing_tasks/#archivingunarchiving-todos`,
+		Short:   "Archives all completed todos.",
+		Long:    `Archives all completed todos.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().ArchiveCompleted()
 		},
@@ -69,8 +65,7 @@ For more info, see https://ultodo.io/docs/cli/managing_tasks/#archivingunarchivi
 		Use:     "gc",
 		Aliases: []string{"rm"},
 		Short:   "Deletes all archived todos.",
-		Long: `Delete all archived todos, reclaiming ids.
-For more info, see https://ultodo.io/docs/cli/managing_tasks/#archivingunarchiving-todos`,
+		Long:    `Delete all archived todos, reclaiming ids.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().GarbageCollect()
 		},

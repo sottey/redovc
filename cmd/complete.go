@@ -10,10 +10,8 @@ import (
 func init() {
 	var (
 		archiveCompletedTodo bool
-		long                 = `Completes or un-completes a todo.
-
-For more info, see https://ultodo.io/docs/cli/managing_tasks`
-		completeCmdExample = `
+		long                 = `Completes or un-completes a todo.`
+		completeCmdExample   = `
   Complete a todo with id 33:
     ultodo complete 33
     ultodo c 33
