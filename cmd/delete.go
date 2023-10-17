@@ -26,6 +26,7 @@ func init() {
 		Example: deleteCmdExample,
 		Long:    deleteCmdLongDesc,
 		Short:   deleteCmdDesc,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().DeleteTodo(strings.Join(args, " "))
 		},

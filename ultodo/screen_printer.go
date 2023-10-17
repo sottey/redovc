@@ -193,7 +193,7 @@ func (f *ScreenPrinter) printPrioritySubject(splitted []string) string {
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
 			coloredWords = append(coloredWords, magentaBold.Sprint(word))
-		} else if contextRegex.MatchString(word) {
+		} else if tagRegex.MatchString(word) {
 			coloredWords = append(coloredWords, redBold.Sprint(word))
 		} else {
 			coloredWords = append(coloredWords, whiteBold.Sprint(word))
@@ -207,7 +207,7 @@ func (f *ScreenPrinter) printSubject(splitted []string) string {
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
 			coloredWords = append(coloredWords, magenta.Sprint(word))
-		} else if contextRegex.MatchString(word) {
+		} else if tagRegex.MatchString(word) {
 			coloredWords = append(coloredWords, green.Sprint(word))
 		} else {
 			coloredWords = append(coloredWords, white.Sprint(word))

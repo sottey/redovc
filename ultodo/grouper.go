@@ -12,22 +12,22 @@ type GroupedTodos struct {
 	Groups map[string][]*Todo
 }
 
-// GroupByContext is grouping todos by its context.
-func (g *Grouper) GroupByContext(todos []*Todo) *GroupedTodos {
+// GroupByTag is grouping todos by its tag.
+func (g *Grouper) GroupByTag(todos []*Todo) *GroupedTodos {
 	groups := map[string][]*Todo{}
 
-	allContexts := []string{}
+	allTags := []string{}
 
 	for _, todo := range todos {
-		allContexts = AddIfNotThere(allContexts, todo.Contexts)
+		allTags = AddIfNotThere(allTags, todo.Tags)
 	}
 
 	for _, todo := range todos {
-		for _, context := range todo.Contexts {
-			groups[context] = append(groups[context], todo)
+		for _, tag := range todo.Tags {
+			groups[tag] = append(groups[tag], todo)
 		}
-		if len(todo.Contexts) == 0 {
-			groups["No contexts"] = append(groups["No contexts"], todo)
+		if len(todo.Tags) == 0 {
+			groups["No tags"] = append(groups["No tags"], todo)
 		}
 	}
 
@@ -86,7 +86,7 @@ func (g *Grouper) GroupByStatus(todos []*Todo) *GroupedTodos {
 	return &GroupedTodos{Groups: groups}
 }
 
-// GroupByNothing is the default result if todos are not grouped by context project.
+// GroupByNothing is the default result if todos are not grouped by tag project.
 func (g *Grouper) GroupByNothing(todos []*Todo) *GroupedTodos {
 	groups := map[string][]*Todo{}
 	groups["all"] = g.sort(todos)

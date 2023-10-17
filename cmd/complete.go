@@ -32,6 +32,7 @@ For more info, see https://ultodo.io/docs/cli/managing_tasks`
 		Example: completeCmdExample,
 		Short:   "Completes a todo.",
 		Long:    long,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().CompleteTodo(strings.Join(args, " "), archiveCompletedTodo)
 		},
@@ -43,6 +44,7 @@ For more info, see https://ultodo.io/docs/cli/managing_tasks`
 		Example: completeCmdExample,
 		Short:   "Un-completes a todo.",
 		Long:    long,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().UncompleteTodo(strings.Join(args, " "))
 		},

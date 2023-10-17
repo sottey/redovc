@@ -45,8 +45,8 @@ func (f *TodoFilter) ApplyFilter() []*Todo {
 			}
 		}
 
-		if f.Filter.HasContextFilter {
-			if !f.todoPassesFilter(todo.Contexts, f.Filter.Contexts, f.Filter.ExcludeContexts) {
+		if f.Filter.HasTagFilter {
+			if !f.todoPassesFilter(todo.Tags, f.Filter.Tags, f.Filter.ExcludeTags) {
 				continue
 			}
 		}

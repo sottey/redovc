@@ -18,7 +18,7 @@ func init() {
 
   Read the full docs at https://ultodo.io/docs/cli/managing_tasks/#editing-todos`
 		editCmdExample = `  To edit a todo's subject:
-    ultodo edit 33 Meeting with @bob about +project
+    ultodo edit 33 Meeting with #bob about +project
     ultodo e 33 Change the subject once again
 
   To edit just the due date, keeping the subject:
@@ -40,6 +40,7 @@ func init() {
 		Example: editCmdExample,
 		Long:    longDesc,
 		Short:   editCmdDesc,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			todoID, err := strconv.Atoi(args[0])
 			if err != nil {

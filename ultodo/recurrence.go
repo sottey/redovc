@@ -52,7 +52,7 @@ func (r *Recurrence) NextRecurringTodo(todo *Todo, completedDate time.Time) *Tod
 		Archived:          false,
 		Subject:           todo.Subject,
 		Projects:          todo.Projects,
-		Contexts:          todo.Contexts,
+		Tags:              todo.Tags,
 		Status:            todo.Status,
 		IsPriority:        todo.IsPriority,
 		Notes:             todo.Notes,

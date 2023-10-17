@@ -10,9 +10,9 @@ import (
 func init() {
 	var (
 		addCmdDesc    = "Adds todos"
-		addCmdExample = `  ultodo add Prepare meeting notes about +importantProject for the meeting with @bob due:today
-  ultodo add Meeting with @bob about +project due:tod
-  ultodo a +work +verify did @john fix the build? due:tom
+		addCmdExample = `  ultodo add Prepare meeting notes about +importantProject for the meeting with #bob due:today
+  ultodo add Meeting with #bob about +project due:tod
+  ultodo a +work +verify did #john fix the build? due:tom
   ultodo a here is an important task priority:true recur:weekdays due:tom`
 
 		addCmdLongDesc = `Adds todos.
@@ -40,6 +40,7 @@ func init() {
 		Example: addCmdExample,
 		Long:    addCmdLongDesc,
 		Short:   addCmdDesc,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().AddTodo(strings.Join(args, " "))
 		},

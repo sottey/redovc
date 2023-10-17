@@ -11,11 +11,11 @@ type Filter struct {
 	DueBefore string
 	DueAfter  string
 
-	Contexts []string
+	Tags     []string
 	Projects []string
 	Status   []string
 
-	ExcludeContexts []string
+	ExcludeTags     []string
 	ExcludeProjects []string
 	ExcludeStatus   []string
 
@@ -32,7 +32,7 @@ type Filter struct {
 
 	HasStatus        bool
 	HasProjectFilter bool
-	HasContextFilter bool
+	HasTagFilter     bool
 
 	HasRecur   bool
 	Recur      string

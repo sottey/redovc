@@ -8,7 +8,7 @@ func CreateTodo(filter *Filter) (*Todo, error) {
 		IsPriority: filter.IsPriority,
 		Completed:  filter.Completed,
 		Projects:   filter.Projects,
-		Contexts:   filter.Contexts,
+		Tags:       filter.Tags,
 		Due:        filter.Due,
 		Status:     filter.LastStatus(),
 		Recur:      filter.Recur,

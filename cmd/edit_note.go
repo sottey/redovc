@@ -24,6 +24,7 @@ func init() {
 		Example: example,
 		Long:    longCmdDesc,
 		Short:   cmdDesc,
+		Args:    cobra.MinimumNArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			todoID, _ := strconv.Atoi(args[0])
 			noteID, _ := strconv.Atoi(args[1])

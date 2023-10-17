@@ -24,6 +24,7 @@ func init() {
 		Aliases: []string{"dn"},
 		Long:    long,
 		Example: example,
+		Args:    cobra.MinimumNArgs(2),
 		Short:   "Delete a note from a todo.",
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) == 2 {

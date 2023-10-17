@@ -7,12 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGroupByContext(t *testing.T) {
+func TestGroupByTag(t *testing.T) {
 	assert := assert.New(t)
 
 	list := SetUpTestMemoryTodoList()
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list.Todos())
+	grouped := grouper.GroupByTag(list.Todos())
 
 	assert.Equal(2, len(grouped.Groups["root"]), "")
 	assert.Equal(1, len(grouped.Groups["more"]), "")
@@ -28,7 +28,7 @@ func TestGroupByProject(t *testing.T) {
 	assert.Equal(2, len(grouped.Groups["test1"]), "")
 }
 
-func TestGroupByContextWithPriorityFirst(t *testing.T) {
+func TestGroupByTagWithPriorityFirst(t *testing.T) {
 	assert := assert.New(t)
 
 	var list []*Todo
@@ -36,12 +36,12 @@ func TestGroupByContextWithPriorityFirst(t *testing.T) {
 	list = append(list, &Todo{Subject: "b - two", IsPriority: true})
 
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list)
+	grouped := grouper.GroupByTag(list)
 
-	assert.Equal("b - two", grouped.Groups["No contexts"][0].Subject)
+	assert.Equal("b - two", grouped.Groups["No tags"][0].Subject)
 }
 
-func TestGroupByContextSortedByDueDate(t *testing.T) {
+func TestGroupByTagSortedByDueDate(t *testing.T) {
 	assert := assert.New(t)
 
 	var list []*Todo
@@ -50,12 +50,12 @@ func TestGroupByContextSortedByDueDate(t *testing.T) {
 	list = append(list, &Todo{Subject: "c - three", IsPriority: false, Due: ""})
 
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list)
+	grouped := grouper.GroupByTag(list)
 
-	assert.Equal("b - two", grouped.Groups["No contexts"][0].Subject)
+	assert.Equal("b - two", grouped.Groups["No tags"][0].Subject)
 }
 
-func TestGroupByContextSortedByDueDateWithNoDuePriority(t *testing.T) {
+func TestGroupByTagSortedByDueDateWithNoDuePriority(t *testing.T) {
 	assert := assert.New(t)
 
 	var list []*Todo
@@ -64,12 +64,12 @@ func TestGroupByContextSortedByDueDateWithNoDuePriority(t *testing.T) {
 	list = append(list, &Todo{Subject: "c - three", IsPriority: true, Due: ""})
 
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list)
+	grouped := grouper.GroupByTag(list)
 
-	assert.Equal("c - three", grouped.Groups["No contexts"][0].Subject)
+	assert.Equal("c - three", grouped.Groups["No tags"][0].Subject)
 }
 
-func TestGroupByContextSortedByDueDateWithPriority(t *testing.T) {
+func TestGroupByTagSortedByDueDateWithPriority(t *testing.T) {
 	assert := assert.New(t)
 
 	var list []*Todo
@@ -78,12 +78,12 @@ func TestGroupByContextSortedByDueDateWithPriority(t *testing.T) {
 	list = append(list, &Todo{Subject: "c - three", IsPriority: false, Due: ""})
 
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list)
+	grouped := grouper.GroupByTag(list)
 
-	assert.Equal("a - one", grouped.Groups["No contexts"][0].Subject)
+	assert.Equal("a - one", grouped.Groups["No tags"][0].Subject)
 }
 
-func TestGroupByContextSortedByDueDateWithArchived(t *testing.T) {
+func TestGroupByTagSortedByDueDateWithArchived(t *testing.T) {
 	assert := assert.New(t)
 
 	var list []*Todo
@@ -92,7 +92,7 @@ func TestGroupByContextSortedByDueDateWithArchived(t *testing.T) {
 	list = append(list, &Todo{Subject: "c - three", IsPriority: false, Due: ""})
 
 	grouper := &Grouper{}
-	grouped := grouper.GroupByContext(list)
+	grouped := grouper.GroupByTag(list)
 
-	assert.Equal("c - three", grouped.Groups["No contexts"][0].Subject)
+	assert.Equal("c - three", grouped.Groups["No tags"][0].Subject)
 }

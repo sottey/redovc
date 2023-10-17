@@ -67,7 +67,7 @@ func (a *App) AddTodo(input string) {
 	filter, err := parser.Parse(input)
 	if err != nil {
 		fmt.Println(err.Error())
-		fmt.Println("I need more information. Try something like 'todo a chat with @bob due tom'")
+		fmt.Println("I need more information. Try something like 'todo a chat with #bob due tom'")
 		return
 	}
 
@@ -521,14 +521,14 @@ func (a *App) parseRangedIds(input string) (ids []int, err error) {
 
 func (a *App) getGroups(input string, todos []*Todo) *GroupedTodos {
 	grouper := &Grouper{}
-	contextRegex, _ := regexp.Compile(`group:c.*$`)
+	tagRegex, _ := regexp.Compile(`group:t.*$`)
 	projectRegex, _ := regexp.Compile(`group:p.*$`)
 	statusRegex, _ := regexp.Compile(`group:s.*$`)
 
 	var grouped *GroupedTodos
 
-	if contextRegex.MatchString(input) {
-		grouped = grouper.GroupByContext(todos)
+	if tagRegex.MatchString(input) {
+		grouped = grouper.GroupByTag(todos)
 	} else if projectRegex.MatchString(input) {
 		grouped = grouper.GroupByProject(todos)
 	} else if statusRegex.MatchString(input) {

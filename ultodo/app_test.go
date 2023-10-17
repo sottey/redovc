@@ -26,7 +26,7 @@ func TestAddTodo(t *testing.T) {
 	assert.Equal(false, todo.IsPriority)
 	assert.Equal("", todo.CompletedDate)
 	assert.Equal([]string{}, todo.Projects)
-	assert.Equal([]string{}, todo.Contexts)
+	assert.Equal([]string{}, todo.Tags)
 }
 
 func TestAddTodoNoDue(t *testing.T) {
@@ -43,7 +43,7 @@ func TestAddTodoNoDue(t *testing.T) {
 	assert.Equal(false, todo.IsPriority)
 	assert.Equal("", todo.CompletedDate)
 	assert.Equal([]string{}, todo.Projects)
-	assert.Equal([]string{}, todo.Contexts)
+	assert.Equal([]string{}, todo.Tags)
 }
 
 func TestGetId(t *testing.T) {

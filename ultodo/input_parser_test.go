@@ -51,11 +51,11 @@ func TestProjectsInSubject(t *testing.T) {
 	assert := assert.New(t)
 	parser := &InputParser{}
 
-	filter, _ := parser.Parse("due:tom here is the +project with @context1 and @context2")
+	filter, _ := parser.Parse("due:tom here is the +project with #tag1 and #tag2")
 
-	assert.Equal("here is the +project with @context1 and @context2", filter.Subject)
+	assert.Equal("here is the +project with #tag1 and #tag2", filter.Subject)
 	assert.Equal("project", filter.Projects[0])
-	assert.Equal([]string{"context1", "context2"}, filter.Contexts)
+	assert.Equal([]string{"tag1", "tag2"}, filter.Tags)
 }
 
 func TestProjectsAsFilter(t *testing.T) {

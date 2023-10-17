@@ -30,6 +30,7 @@ func init() {
 		Example: example,
 		Long:    long,
 		Short:   "Prioritize a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().PrioritizeTodo(strings.Join(args, " "))
 		},
@@ -41,6 +42,7 @@ func init() {
 		Example: example,
 		Long:    long,
 		Short:   "Un-prioritize a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().UnprioritizeTodo(strings.Join(args, " "))
 		},

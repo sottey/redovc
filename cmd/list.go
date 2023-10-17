@@ -58,12 +58,12 @@ func init() {
   List all todos without a status of "started" or "finished"
     ultodo list status:-started,-finished
 
-  Filtering by projects or contexts:
+  Filtering by projects or tags:
   ----------------------------------
 
-  Project and context filtering are very similar:
+  Project and tag filtering are very similar:
     ultodo list project:<project>
-    ultodo list context:<context>
+    ultodo list tag:<tag>
 
   List all todos with a project of "mobile"
     ultodo list project:mobile
@@ -97,8 +97,8 @@ func init() {
   Grouping:
   ---------
 
-  List all todos grouped by context:
-    ultodo list group:c
+  List all todos grouped by tag:
+    ultodo list group:t
 
   List all todos grouped by project:
     ultodo list group:p
@@ -111,17 +111,17 @@ func init() {
 
   Of course, you can combine grouping and filtering to get a nice formatted list.
 
-  Lists all todos due today grouped by context:
-    ultodo list group:c due:today
+  Lists all todos due today grouped by tag:
+    ultodo list group:t due:today
 
-  Lists all todos due today for +mobile, grouped by context:
-    ultodo list project:mobile group:c due:thisweek
+  Lists all todos due today for +mobile, grouped by tag:
+    ultodo list project:mobile group:t due:thisweek
 
   Lists all prioritized todos that are not completed and are overdue.  Include a todo's notes when listing:
     ultodo list --notes is:priority not:completed duebefore:tod
 
-  Lists all todos due tomorrow concerning @frank for +project, grouped by project:
-    ultodo list context:frank group:p due:tom
+  Lists all todos due tomorrow concerning #frank for +project, grouped by project:
+    ultodo list tag:frank group:p due:tom
 
   Indicator flags
   ---------------

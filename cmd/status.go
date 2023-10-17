@@ -29,6 +29,7 @@ func init() {
 		Example: setStatusCmdExample,
 		Long:    setStatusCmdLongDesc,
 		Short:   setStatusCmdDesc,
+		Args:    cobra.MinimumNArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().SetTodoStatus(strings.Join(args, " "))
 		},

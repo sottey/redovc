@@ -45,7 +45,7 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 		HasCompletedAt:   false,
 		HasIsPriority:    false,
 		HasProjectFilter: false,
-		HasContextFilter: false,
+		HasTagFilter:     false,
 		HasDueBefore:     false,
 		HasDue:           false,
 		HasDueAfter:      false,
@@ -56,8 +56,8 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 
 	var subjectMatches []string
 
-	cr, _ := regexp.Compile(`\@[\p{L}\d_-]+`)
-	filter.Contexts = p.matchWords(input, cr)
+	tr, _ := regexp.Compile(`#[\p{L}\d_-]+`)
+	filter.Tags = p.matchWords(input, tr)
 
 	pr, _ := regexp.Compile(`\+[\p{L}\d_-]+`)
 	filter.Projects = p.matchWords(input, pr)
@@ -161,10 +161,10 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 			match = true
 		}
 
-		r, _ = regexp.Compile(`context:.*$`)
+		r, _ = regexp.Compile(`tag:.*$`)
 		if r.MatchString(word) {
-			filter.HasContextFilter = true
-			filter.Contexts, filter.ExcludeContexts = p.parseString(r.FindString(word)[8:])
+			filter.HasTagFilter = true
+			filter.Tags, filter.ExcludeTags = p.parseString(r.FindString(word)[8:])
 			match = true
 		}
 
