@@ -67,6 +67,7 @@ func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes boo
 		tabby.AddLine(
 			f.formatID(todo.ID, todo.IsPriority),
 			f.formatCompleted(todo.Completed),
+			f.formatInformation(todo),
 			f.formatDue(todo.Due, todo.IsPriority, todo.Completed),
 			f.formatStatus(todo.Status, todo.IsPriority),
 			f.formatSubject(todo.Subject, todo.IsPriority))

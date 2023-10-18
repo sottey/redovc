@@ -26,7 +26,7 @@ func init() {
 
   Todos can also recur.  Set the 'recur' directive to control recurrence:
     ultodo a Daily standup recur:weekdays
-    ultodo a 1o1 meeting with jim recur:weekly
+    ultodo a 1on1 meeting with jim recur:weekly
 `
 	)
 
