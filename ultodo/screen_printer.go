@@ -13,8 +13,8 @@ import (
 )
 
 var (
-	blue        = color.New(0, color.FgBlue)
-	blueBold    = color.New(color.Bold, color.FgBlue)
+	//blue        = color.New(0, color.FgBlue)
+	//blueBold    = color.New(color.Bold, color.FgBlue)
 	green       = color.New(0, color.FgGreen)
 	greenBold   = color.New(color.Bold, color.FgGreen)
 	cyan        = color.New(0, color.FgCyan)

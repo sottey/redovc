@@ -99,7 +99,7 @@ func TestStatus(t *testing.T) {
 	assert.Equal([]string{"one"}, filter.Status)
 	assert.Equal([]string{"two"}, filter.ExcludeStatus)
 
-	filter, err = parser.Parse("this is the subject")
+	filter, _ = parser.Parse("this is the subject")
 
 	assert.Equal(false, filter.HasStatus)
 }

@@ -55,6 +55,4 @@ func testFileCleanUp() {
 	if err != nil {
 		panic(err)
 	}
-
-	return
 }

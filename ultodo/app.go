@@ -1,7 +1,6 @@
 package ultodo
 
 import (
-	"errors"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -321,7 +320,8 @@ func (a *App) getID(input string) (int, error) {
 	splitted := strings.Split(input, " ")
 	id, err := strconv.Atoi(splitted[0])
 	if err != nil {
-		return -1, errors.New(fmt.Sprintf("Invalid id: '%s'", splitted[0]))
+		return -1, fmt.Errorf("invalid id: '%s'", splitted[0])
+		// return -1, errors.New(fmt.Sprintf("Invalid id: '%s'", splitted[0]))
 	}
 	return id, nil
 }
@@ -350,7 +350,7 @@ func (a *App) parseRangedIds(input string) (ids []int, err error) {
 		lowerID, _ := strconv.Atoi(matches[1])
 		upperID, _ := strconv.Atoi(matches[2])
 		if lowerID >= upperID {
-			return ids, fmt.Errorf("Invalid id group: %s", input)
+			return ids, fmt.Errorf("invalid id group: %s", input)
 		}
 		for id := lowerID; id <= upperID; id++ {
 			ids = append(ids, id)
