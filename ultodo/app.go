@@ -345,7 +345,7 @@ func (a *App) getIDs(input string) (ids []int) {
 }
 
 func (a *App) parseRangedIds(input string) (ids []int, err error) {
-	rangeNumberRE, _ := regexp.Compile("(\\d+)-(\\d+)")
+	rangeNumberRE, _ := regexp.Compile(`(\d+)-(\d+)`)
 	if matches := rangeNumberRE.FindStringSubmatch(input); len(matches) > 0 {
 		lowerID, _ := strconv.Atoi(matches[1])
 		upperID, _ := strconv.Atoi(matches[2])
