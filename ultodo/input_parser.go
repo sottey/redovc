@@ -164,7 +164,7 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 		r, _ = regexp.Compile(`tag:.*$`)
 		if r.MatchString(word) {
 			filter.HasTagFilter = true
-			filter.Tags, filter.ExcludeTags = p.parseString(r.FindString(word)[8:])
+			filter.Tags, filter.ExcludeTags = p.parseString(r.FindString(word)[4:])
 			match = true
 		}
 
