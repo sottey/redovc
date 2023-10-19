@@ -1,6 +1,7 @@
 package ultodo
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -31,9 +32,11 @@ func TestCreateTodoWithDue(t *testing.T) {
 
 	parser := &InputParser{}
 	filter, _ := parser.Parse("subject with a +project and #tag due:" + tomorrowString)
-
+	fmt.Println(filter)
 	todo, _ := CreateTodo(filter)
 	assert.Equal("subject with a +project and #tag", todo.Subject)
+	fmt.Println("todo.due: " + todo.Due)
+	fmt.Println("tomorrow.Format(DATE_FORMAT): " + tomorrow.Format(DATE_FORMAT))
 	assert.Equal(tomorrow.Format(DATE_FORMAT), todo.Due)
 	assert.Equal(false, todo.IsPriority)
 	assert.Equal(false, todo.Archived)
