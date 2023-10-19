@@ -53,7 +53,8 @@ func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showS
 	tabby := tabby.NewCustom(tabwriter.NewWriter(color.Output, 0, 0, 2, ' ', 0))
 	tabby.AddLine()
 	for _, key := range keys {
-		tabby.AddLine(cyan.Sprint(key))
+		var title = key + " (" + strconv.Itoa(len(groupedTodos.Groups[key])) + ")"
+		tabby.AddLine(cyan.Sprint(title))
 		for _, todo := range groupedTodos.Groups[key] {
 			f.printTodo(tabby, todo, printNotes, showStatus)
 		}
