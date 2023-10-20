@@ -1,6 +1,7 @@
 package ultodo
 
 import (
+	"strings"
 	"time"
 )
 
@@ -35,6 +36,12 @@ func (f *TodoFilter) ApplyFilter() []*Todo {
 
 		if f.Filter.HasStatus {
 			if !f.todoPassesFilter([]string{todo.Status}, f.Filter.Status, f.Filter.ExcludeStatus) {
+				continue
+			}
+		}
+
+		if f.Filter.HasSearchString {
+			if !strings.Contains(todo.Subject, f.Filter.SearchString[0]) {
 				continue
 			}
 		}

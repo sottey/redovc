@@ -15,6 +15,8 @@ type Filter struct {
 	Projects []string
 	Status   []string
 
+	SearchString []string
+
 	ExcludeTags     []string
 	ExcludeProjects []string
 	ExcludeStatus   []string
@@ -29,6 +31,8 @@ type Filter struct {
 	HasDueBefore bool
 	HasDue       bool
 	HasDueAfter  bool
+
+	HasSearchString bool
 
 	HasStatus        bool
 	HasProjectFilter bool

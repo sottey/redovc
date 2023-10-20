@@ -50,6 +50,7 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 		HasDue:           false,
 		HasDueAfter:      false,
 		HasRecur:         false,
+		HasSearchString:  false,
 	}
 
 	dateParser := &DateParser{}
@@ -165,6 +166,13 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 		if r.MatchString(word) {
 			filter.HasTagFilter = true
 			filter.Tags, filter.ExcludeTags = p.parseString(r.FindString(word)[4:])
+			match = true
+		}
+
+		r, _ = regexp.Compile(`search:.*$`)
+		if r.MatchString(word) {
+			filter.HasSearchString = true
+			filter.SearchString, _ = p.parseString(r.FindString(word)[7:])
 			match = true
 		}
 
