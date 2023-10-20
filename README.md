@@ -1,4 +1,4 @@
 # ultodo
-New fork of [ultodo](https://github/ultodo) updating golang mods, deprecated packages and adding a bit of functionality.
+New fork of [Ultralist](https://github.com/gammons/ultralist) updating golang mods, deprecated packages and adding a bit of functionality.
 
-HUGE thanks to everyone who created ultodo, an amazing todo tool
+HUGE thanks to everyone who created Ultralist, an amazing todo tool
