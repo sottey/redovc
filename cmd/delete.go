@@ -15,9 +15,7 @@ func init() {
     ultodo delete 33
 
   Note, this will also free up the id of 33.`
-		deleteCmdLongDesc = `Delete a todo with a specified ID.
-
-  See the full docs at https://ultodo.io/docs/cli/managing_tasks`
+		deleteCmdLongDesc = `Delete a todo with a specified ID.`
 	)
 
 	var deleteCmd = &cobra.Command{
@@ -26,6 +24,7 @@ func init() {
 		Example: deleteCmdExample,
 		Long:    deleteCmdLongDesc,
 		Short:   deleteCmdDesc,
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().DeleteTodo(strings.Join(args, " "))
 		},

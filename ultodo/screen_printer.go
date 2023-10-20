@@ -13,8 +13,8 @@ import (
 )
 
 var (
-	blue        = color.New(0, color.FgBlue)
-	blueBold    = color.New(color.Bold, color.FgBlue)
+	//blue        = color.New(0, color.FgBlue)
+	//blueBold    = color.New(color.Bold, color.FgBlue)
 	green       = color.New(0, color.FgGreen)
 	greenBold   = color.New(color.Bold, color.FgGreen)
 	cyan        = color.New(0, color.FgCyan)
@@ -53,7 +53,8 @@ func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showS
 	tabby := tabby.NewCustom(tabwriter.NewWriter(color.Output, 0, 0, 2, ' ', 0))
 	tabby.AddLine()
 	for _, key := range keys {
-		tabby.AddLine(cyan.Sprint(key))
+		var title = key + " (" + strconv.Itoa(len(groupedTodos.Groups[key])) + ")"
+		tabby.AddLine(cyan.Sprint(title))
 		for _, todo := range groupedTodos.Groups[key] {
 			f.printTodo(tabby, todo, printNotes, showStatus)
 		}
@@ -67,6 +68,7 @@ func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes boo
 		tabby.AddLine(
 			f.formatID(todo.ID, todo.IsPriority),
 			f.formatCompleted(todo.Completed),
+			f.formatInformation(todo),
 			f.formatDue(todo.Due, todo.IsPriority, todo.Completed),
 			f.formatStatus(todo.Status, todo.IsPriority),
 			f.formatSubject(todo.Subject, todo.IsPriority))
@@ -193,7 +195,7 @@ func (f *ScreenPrinter) printPrioritySubject(splitted []string) string {
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
 			coloredWords = append(coloredWords, magentaBold.Sprint(word))
-		} else if contextRegex.MatchString(word) {
+		} else if tagRegex.MatchString(word) {
 			coloredWords = append(coloredWords, redBold.Sprint(word))
 		} else {
 			coloredWords = append(coloredWords, whiteBold.Sprint(word))
@@ -207,7 +209,7 @@ func (f *ScreenPrinter) printSubject(splitted []string) string {
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
 			coloredWords = append(coloredWords, magenta.Sprint(word))
-		} else if contextRegex.MatchString(word) {
+		} else if tagRegex.MatchString(word) {
 			coloredWords = append(coloredWords, green.Sprint(word))
 		} else {
 			coloredWords = append(coloredWords, white.Sprint(word))

@@ -45,19 +45,20 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 		HasCompletedAt:   false,
 		HasIsPriority:    false,
 		HasProjectFilter: false,
-		HasContextFilter: false,
+		HasTagFilter:     false,
 		HasDueBefore:     false,
 		HasDue:           false,
 		HasDueAfter:      false,
 		HasRecur:         false,
+		HasSearchString:  false,
 	}
 
 	dateParser := &DateParser{}
 
 	var subjectMatches []string
 
-	cr, _ := regexp.Compile(`\@[\p{L}\d_-]+`)
-	filter.Contexts = p.matchWords(input, cr)
+	tr, _ := regexp.Compile(`#[\p{L}\d_-]+`)
+	filter.Tags = p.matchWords(input, tr)
 
 	pr, _ := regexp.Compile(`\+[\p{L}\d_-]+`)
 	filter.Projects = p.matchWords(input, pr)
@@ -161,10 +162,17 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 			match = true
 		}
 
-		r, _ = regexp.Compile(`context:.*$`)
+		r, _ = regexp.Compile(`tag:.*$`)
 		if r.MatchString(word) {
-			filter.HasContextFilter = true
-			filter.Contexts, filter.ExcludeContexts = p.parseString(r.FindString(word)[8:])
+			filter.HasTagFilter = true
+			filter.Tags, filter.ExcludeTags = p.parseString(r.FindString(word)[4:])
+			match = true
+		}
+
+		r, _ = regexp.Compile(`search:.*$`)
+		if r.MatchString(word) {
+			filter.HasSearchString = true
+			filter.SearchString, _ = p.parseString(r.FindString(word)[7:])
 			match = true
 		}
 
@@ -181,7 +189,7 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 
 			r := &Recurrence{}
 			if !r.ValidRecurrence(filter.Recur) {
-				return filter, fmt.Errorf("I could not understand the recurrence you gave me: '%s'", filter.Recur)
+				return filter, fmt.Errorf("i could not understand the recurrence you gave me: '%s'", filter.Recur)
 			}
 		}
 

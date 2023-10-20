@@ -1,7 +1,6 @@
 package ultodo
 
 import (
-	"fmt"
 	"io"
 	"sort"
 	"strconv"
@@ -37,7 +36,7 @@ func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool,
 	tabby := tabby.NewCustom(tabwriter.NewWriter(color.Output, 0, 0, 2, ' ', 0))
 	tabby.AddLine()
 	for _, key := range keys {
-		tabby.AddLine(fmt.Sprint(key))
+		tabby.AddLine(key)
 		for _, todo := range groupedTodos.Groups[key] {
 			f.printTodo(tabby, todo, printNotes, showStatus)
 		}
@@ -63,37 +62,32 @@ func (f *SimpleScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNot
 	}
 	if printNotes {
 		for nid, note := range todo.Notes {
-			tabby.AddLine(
-				"  "+fmt.Sprint(strconv.Itoa(nid)),
-				fmt.Sprint(""),
-				fmt.Sprint(""),
-				fmt.Sprint(""),
-				fmt.Sprint(note))
+			tabby.AddLine("  ", strconv.Itoa(nid), note)
 		}
 	}
 }
 
 func (f *SimpleScreenPrinter) formatID(ID int, isPriority bool) string {
 	if isPriority {
-		return fmt.Sprint(strconv.Itoa(ID))
+		return strconv.Itoa(ID)
 	}
-	return fmt.Sprint(strconv.Itoa(ID))
+	return strconv.Itoa(ID)
 }
 
 func (f *SimpleScreenPrinter) formatCompleted(completed bool) string {
 	if completed {
 		if f.UnicodeSupport {
-			return fmt.Sprint("[✔]")
+			return "[✔]"
 		} else {
-			return fmt.Sprint("[x]")
+			return "[x]"
 		}
 	}
-	return fmt.Sprint("[ ]")
+	return "[ ]"
 }
 
 func (f *SimpleScreenPrinter) formatDue(due string, isPriority bool, completed bool) string {
 	if due == "" {
-		return fmt.Sprint("          ")
+		return "          "
 	}
 	dueTime, _ := time.Parse(DATE_FORMAT, due)
 
@@ -120,29 +114,29 @@ func (f *SimpleScreenPrinter) formatInformation(todo *Todo) string {
 	} else {
 		information = append(information, " ")
 	}
-	return fmt.Sprint(strings.Join(information, ""))
+	return strings.Join(information, "")
 }
 
 func (f *SimpleScreenPrinter) printDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return fmt.Sprint("today     ")
+		return "today     "
 	} else if isTomorrow(due) {
-		return fmt.Sprint("tomorrow  ")
+		return "tomorrow  "
 	} else if isPastDue(due) && !completed {
-		return fmt.Sprint(due.Format("Mon Jan 02"))
+		return due.Format("Mon Jan 02")
 	}
-	return fmt.Sprint(due.Format("Mon Jan 02"))
+	return due.Format("Mon Jan 02")
 }
 
 func (f *SimpleScreenPrinter) printPriorityDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return fmt.Sprint("today     ")
+		return "today     "
 	} else if isTomorrow(due) {
-		return fmt.Sprint("tomorrow  ")
+		return "tomorrow  "
 	} else if isPastDue(due) && !completed {
-		return fmt.Sprint(due.Format("Mon Jan 02"))
+		return due.Format("Mon Jan 02")
 	}
-	return fmt.Sprint(due.Format("Mon Jan 02"))
+	return due.Format("Mon Jan 02")
 }
 
 func (f *SimpleScreenPrinter) formatSubject(subject string, isPriority bool) string {
@@ -158,11 +152,11 @@ func (f *SimpleScreenPrinter) printPrioritySubject(splitted []string) string {
 	coloredWords := []string{}
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
-		} else if contextRegex.MatchString(word) {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
+			coloredWords = append(coloredWords, word)
+		} else if tagRegex.MatchString(word) {
+			coloredWords = append(coloredWords, word)
 		} else {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
+			coloredWords = append(coloredWords, word)
 		}
 	}
 	return strings.Join(coloredWords, " ")
@@ -172,11 +166,11 @@ func (f *SimpleScreenPrinter) printSubject(splitted []string) string {
 	coloredWords := []string{}
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
-		} else if contextRegex.MatchString(word) {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
+			coloredWords = append(coloredWords, word)
+		} else if tagRegex.MatchString(word) {
+			coloredWords = append(coloredWords, word)
 		} else {
-			coloredWords = append(coloredWords, fmt.Sprint(word))
+			coloredWords = append(coloredWords, word)
 		}
 	}
 	return strings.Join(coloredWords, " ")

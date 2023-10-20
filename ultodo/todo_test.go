@@ -35,7 +35,7 @@ func SetUpTestMemoryTodoList() *TodoList {
 	todo1 := NewTodo()
 	todo1.Subject = "this is the first subject"
 	todo1.Projects = []string{"test1"}
-	todo1.Contexts = []string{"root"}
+	todo1.Tags = []string{"root"}
 	todo1.Due = "2016-04-04"
 	todo1.Archive()
 	list.Add(todo1)
@@ -43,7 +43,7 @@ func SetUpTestMemoryTodoList() *TodoList {
 	todo2 := NewTodo()
 	todo2.Subject = "audit userify for 2FA"
 	todo2.Projects = []string{"test1"}
-	todo2.Contexts = []string{"root", "more"}
+	todo2.Tags = []string{"root", "more"}
 	todo2.Complete()
 	list.Add(todo2)
 
@@ -55,6 +55,4 @@ func testFileCleanUp() {
 	if err != nil {
 		panic(err)
 	}
-
-	return
 }

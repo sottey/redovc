@@ -1,20 +1,16 @@
 package ultodo
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
-
-	"github.com/manifoldco/promptui"
-	"github.com/skratchdot/open-golang/open"
 )
 
-// Current version of ultodo.
 const (
-	VERSION     string = "1.7.1"
+	// Current version of ultodo.
+	VERSION string = "1.7.1"
+
 	DATE_FORMAT string = "2006-01-02"
 )
 
@@ -67,7 +63,7 @@ func (a *App) AddTodo(input string) {
 	filter, err := parser.Parse(input)
 	if err != nil {
 		fmt.Println(err.Error())
-		fmt.Println("I need more information. Try something like 'todo a chat with @bob due tom'")
+		fmt.Println("I need more information. Try something like 'todo a chat with #bob due tom'")
 		return
 	}
 
@@ -304,145 +300,6 @@ func (a *App) GarbageCollect() {
 	fmt.Println("Garbage collection complete.")
 }
 
-// Sync will sync the todolist with ultodo.io.
-func (a *App) Sync(quiet bool) {
-	backend := NewBackend()
-	if !backend.CredsFileExists() {
-		fmt.Println("You're not authenticated with ultodo.io yet.  Please run `ultodo auth` first.")
-		return
-	}
-
-	a.load()
-	if !a.TodoList.IsSynced {
-		fmt.Println("This list isn't currently syncing with ultodo.io.  Please run `ultodo sync --setup` to set up syncing.")
-		return
-	}
-
-	var synchronizer *Synchronizer
-	if quiet {
-		synchronizer = NewQuietSynchronizer()
-	} else {
-		synchronizer = NewSynchronizer()
-	}
-	synchronizer.Sync(a.TodoList, a.EventLogger.CurrentSyncedList)
-
-	if synchronizer.WasSuccessful() {
-		a.EventLogger.ClearEventLogs()
-		a.TodoStore.Save(a.TodoList.Data)
-	}
-}
-
-// SetupSync sets up a todolist to sync with ultodo.io.
-func (a *App) SetupSync() {
-	backend := NewBackend()
-	if !backend.CredsFileExists() {
-		fmt.Println("You're not authenticated with ultodo.io yet.  Please run `ultodo auth` first.")
-		return
-	}
-
-	if a.TodoStore.LocalTodosFileExists() {
-		a.load()
-
-		if a.TodoList.IsSynced {
-			fmt.Println("This list is already sycned with ultodo.io. Use the --unsync flag to stop syncing this list.")
-			return
-		}
-
-		prompt := promptui.Select{
-			Label: "You have a todos list in this directory.  What would you like to do?",
-			Items: []string{"Sync my list to ultodo.io", "Pull a list from ultodo.io, replacing the list that's here"},
-		}
-		_, result, err := prompt.Run()
-		if err != nil {
-			return
-		}
-		if strings.HasPrefix(result, "Sync my list") {
-			prompt := promptui.Prompt{
-				Label: "Give this list a name",
-			}
-
-			result, err := prompt.Run()
-			if err != nil {
-				fmt.Println("A name is required to sync a list.")
-				return
-			}
-			a.EventLogger.CurrentSyncedList.Name = result
-			a.TodoList.Name = result
-			a.TodoList.IsSynced = true
-			a.EventLogger.WriteSyncedLists()
-
-			// right here, I need to run a request to create a todo list via the API.
-			backend.CreateTodoList(a.TodoList)
-
-			return
-		}
-	}
-
-	// at this point, it is known that a local todos file does not exist.
-	type Response struct {
-		Todolists []TodoList `json:"todolists"`
-	}
-
-	var response *Response
-
-	resp := backend.PerformRequest("GET", "/api/v1/todo_lists", []byte{})
-	json.Unmarshal(resp, &response)
-
-	var todolistNames []string
-	for _, todolist := range response.Todolists {
-		todolistNames = append(todolistNames, todolist.Name)
-	}
-	prompt2 := promptui.Select{
-		Label: "Choose a list to import",
-		Items: todolistNames,
-	}
-
-	idx, _, _ := prompt2.Run()
-	a.TodoList = &response.Todolists[idx]
-	a.TodoStore.Initialize()
-	a.TodoStore.Save(a.TodoList.Data)
-
-	a.EventLogger = NewEventLogger(a.TodoList, a.TodoStore)
-	a.EventLogger.WriteSyncedLists()
-}
-
-// Unsync stops a list from syncing with ultodo.io.
-func (a *App) Unsync() {
-	backend := NewBackend()
-	if !backend.CredsFileExists() {
-		fmt.Println("You're not authenticated with ultodo.io yet.  Please run `ultodo auth` first.")
-		return
-	}
-
-	a.load()
-
-	if !a.TodoList.IsSynced {
-		fmt.Println("This list isn't currently syncing with ultodo.io.")
-		return
-	}
-
-	a.EventLogger.DeleteCurrentSyncedList()
-	a.EventLogger.WriteSyncedLists()
-	fmt.Println("This list will no longer sync with ultodo.io.  To set up syncing again, run `ultodo sync --setup`.")
-}
-
-// CheckAuth is checking the authentication against ultodo.io.
-func (a *App) CheckAuth() {
-	synchronizer := NewSynchronizer()
-	synchronizer.CheckAuth()
-}
-
-// AuthWorkflow is creating the authentication workflow.
-func (a *App) AuthWorkflow() {
-	webapp := &Webapp{}
-	backend := NewBackend()
-
-	open.Start(backend.AuthURL())
-	fmt.Println("Head to your browser to complete authorization steps.")
-	fmt.Println("Listening for response...")
-	webapp.Run()
-}
-
 // load the todolist from the todo store.
 func (a *App) load() error {
 	todos, err := a.TodoStore.Load()
@@ -454,34 +311,17 @@ func (a *App) load() error {
 	return nil
 }
 
-// OpenWeb is opening the current list on ultodo.io in your browser.
-func (a *App) OpenWeb() {
-	a.load()
-	if !a.TodoList.IsSynced {
-		fmt.Println("This list isn't synced! Use 'ultodo sync' to synchronize this list with ultodo.io.")
-		return
-	}
-
-	fmt.Println("Opening this list on your browser...")
-	open.Start("https://app.ultodo.io/todolist/" + a.EventLogger.CurrentSyncedList.UUID)
-}
-
 // Save the todolist to the store.
 func (a *App) save() {
 	a.TodoStore.Save(a.TodoList.Data)
-	if a.TodoList.IsSynced {
-		a.EventLogger.ProcessEvents()
-
-		synchronizer := NewQuietSynchronizer()
-		synchronizer.ExecSyncInBackground()
-	}
 }
 
 func (a *App) getID(input string) (int, error) {
 	splitted := strings.Split(input, " ")
 	id, err := strconv.Atoi(splitted[0])
 	if err != nil {
-		return -1, errors.New(fmt.Sprintf("Invalid id: '%s'", splitted[0]))
+		return -1, fmt.Errorf("invalid id: '%s'", splitted[0])
+		// return -1, errors.New(fmt.Sprintf("Invalid id: '%s'", splitted[0]))
 	}
 	return id, nil
 }
@@ -505,12 +345,12 @@ func (a *App) getIDs(input string) (ids []int) {
 }
 
 func (a *App) parseRangedIds(input string) (ids []int, err error) {
-	rangeNumberRE, _ := regexp.Compile("(\\d+)-(\\d+)")
+	rangeNumberRE, _ := regexp.Compile(`(\d+)-(\d+)`)
 	if matches := rangeNumberRE.FindStringSubmatch(input); len(matches) > 0 {
 		lowerID, _ := strconv.Atoi(matches[1])
 		upperID, _ := strconv.Atoi(matches[2])
 		if lowerID >= upperID {
-			return ids, fmt.Errorf("Invalid id group: %s", input)
+			return ids, fmt.Errorf("invalid id group: %s", input)
 		}
 		for id := lowerID; id <= upperID; id++ {
 			ids = append(ids, id)
@@ -521,14 +361,14 @@ func (a *App) parseRangedIds(input string) (ids []int, err error) {
 
 func (a *App) getGroups(input string, todos []*Todo) *GroupedTodos {
 	grouper := &Grouper{}
-	contextRegex, _ := regexp.Compile(`group:c.*$`)
+	tagRegex, _ := regexp.Compile(`group:t.*$`)
 	projectRegex, _ := regexp.Compile(`group:p.*$`)
 	statusRegex, _ := regexp.Compile(`group:s.*$`)
 
 	var grouped *GroupedTodos
 
-	if contextRegex.MatchString(input) {
-		grouped = grouper.GroupByContext(todos)
+	if tagRegex.MatchString(input) {
+		grouped = grouper.GroupByTag(todos)
 	} else if projectRegex.MatchString(input) {
 		grouped = grouper.GroupByProject(todos)
 	} else if statusRegex.MatchString(input) {

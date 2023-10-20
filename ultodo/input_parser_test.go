@@ -51,11 +51,11 @@ func TestProjectsInSubject(t *testing.T) {
 	assert := assert.New(t)
 	parser := &InputParser{}
 
-	filter, _ := parser.Parse("due:tom here is the +project with @context1 and @context2")
+	filter, _ := parser.Parse("due:tom here is the +project with #tag1 and #tag2")
 
-	assert.Equal("here is the +project with @context1 and @context2", filter.Subject)
+	assert.Equal("here is the +project with #tag1 and #tag2", filter.Subject)
 	assert.Equal("project", filter.Projects[0])
-	assert.Equal([]string{"context1", "context2"}, filter.Contexts)
+	assert.Equal([]string{"tag1", "tag2"}, filter.Tags)
 }
 
 func TestProjectsAsFilter(t *testing.T) {
@@ -99,7 +99,7 @@ func TestStatus(t *testing.T) {
 	assert.Equal([]string{"one"}, filter.Status)
 	assert.Equal([]string{"two"}, filter.ExcludeStatus)
 
-	filter, err = parser.Parse("this is the subject")
+	filter, _ = parser.Parse("this is the subject")
 
 	assert.Equal(false, filter.HasStatus)
 }
@@ -125,7 +125,7 @@ func TestInvalidRecurrence(t *testing.T) {
 		t.Fail()
 	}
 
-	assert.Equal(err.Error(), "I could not understand the recurrence you gave me: 'blah'")
+	assert.Equal(err.Error(), "i could not understand the recurrence you gave me: 'blah'")
 }
 
 func TestNoneRecurrence(t *testing.T) {

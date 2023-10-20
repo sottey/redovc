@@ -34,8 +34,8 @@ func EditTodo(todo *Todo, todoList *TodoList, filter *Filter) error {
 		todo.Projects = filter.Projects
 	}
 
-	if len(filter.Contexts) > 0 {
-		todo.Contexts = filter.Contexts
+	if len(filter.Tags) > 0 {
+		todo.Tags = filter.Tags
 	}
 
 	if filter.HasRecur {

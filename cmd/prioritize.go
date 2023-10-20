@@ -19,9 +19,7 @@ func init() {
 
 		long = `Prioritize and un-prioritize todos.
 
-  Todos with the priority flag will be highlighted, and will be at the top of your list.
-
-  For more info, see https://ultodo.io/docs/cli/managing_tasks/#prioritizingunprioritizing-todos`
+  Todos with the priority flag will be highlighted, and will be at the top of your list.`
 	)
 
 	var prioritizeCmd = &cobra.Command{
@@ -30,6 +28,7 @@ func init() {
 		Example: example,
 		Long:    long,
 		Short:   "Prioritize a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().PrioritizeTodo(strings.Join(args, " "))
 		},
@@ -41,6 +40,7 @@ func init() {
 		Example: example,
 		Long:    long,
 		Short:   "Un-prioritize a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().UnprioritizeTodo(strings.Join(args, " "))
 		},

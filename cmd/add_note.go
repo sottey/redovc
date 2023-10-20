@@ -10,9 +10,8 @@ import (
 
 func init() {
 	var (
-		addNoteCmdDesc     = "Adds notes to todos."
-		addNoteLongCmdDesc = addNoteCmdDesc + "\n For more info, see https://ultodo.io/docs/cli/managing_tasks/#notes-management"
-		addNoteCmdExample  = "  ultodo an 1 this is a note for the first todo"
+		addNoteCmdDesc    = "Adds notes to todos."
+		addNoteCmdExample = "  ultodo an 1 this is a note for the first todo"
 	)
 
 	var addNoteCmd = &cobra.Command{
@@ -20,7 +19,6 @@ func init() {
 		Aliases: []string{"an"},
 		Example: addNoteCmdExample,
 		Short:   addNoteCmdDesc,
-		Long:    addNoteLongCmdDesc,
 		Args:    cobra.MinimumNArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			todoID, _ := strconv.Atoi(args[0])

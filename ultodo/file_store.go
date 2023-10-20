@@ -3,7 +3,6 @@ package ultodo
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 )
@@ -27,7 +26,7 @@ func (f *FileStore) Initialize() {
 		fmt.Println("It looks like a .todos.json file already exists!  Doing nothing.")
 		os.Exit(0)
 	}
-	if err := ioutil.WriteFile(TodosJSONFile, []byte("[]"), 0644); err != nil {
+	if err := os.WriteFile(TodosJSONFile, []byte("[]"), 0644); err != nil {
 		fmt.Println("Error writing json file", err)
 		os.Exit(1)
 	}
@@ -43,7 +42,7 @@ func (f *FileStore) LocalTodosFileExists() bool {
 
 // Load is loading a .todos.json file, either from cwd, or the home directory
 func (f *FileStore) Load() ([]*Todo, error) {
-	data, err := ioutil.ReadFile(f.GetLocation())
+	data, err := os.ReadFile(f.GetLocation())
 	if err != nil {
 		fmt.Println("No todo file found!")
 		fmt.Println("Initialize a new todo repo by running 'ultodo init'")

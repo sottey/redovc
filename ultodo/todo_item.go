@@ -14,7 +14,7 @@ type Todo struct {
 	UUID              string   `json:"uuid"`
 	Subject           string   `json:"subject"`
 	Projects          []string `json:"projects"`
-	Contexts          []string `json:"contexts"`
+	Tags              []string `json:"tags"`
 	Due               string   `json:"due"`
 	Completed         bool     `json:"completed"`
 	CompletedDate     string   `json:"completed_date"`
@@ -98,7 +98,7 @@ func (t Todo) Equals(other *Todo) bool {
 		t.UUID != other.UUID ||
 		t.Subject != other.Subject ||
 		!reflect.DeepEqual(t.Projects, other.Projects) ||
-		!reflect.DeepEqual(t.Contexts, other.Contexts) ||
+		!reflect.DeepEqual(t.Tags, other.Tags) ||
 		t.Due != other.Due ||
 		t.Completed != other.Completed ||
 		t.Status != other.Status ||

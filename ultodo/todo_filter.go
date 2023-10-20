@@ -1,6 +1,7 @@
 package ultodo
 
 import (
+	"strings"
 	"time"
 )
 
@@ -39,14 +40,20 @@ func (f *TodoFilter) ApplyFilter() []*Todo {
 			}
 		}
 
+		if f.Filter.HasSearchString {
+			if !strings.Contains(todo.Subject, f.Filter.SearchString[0]) {
+				continue
+			}
+		}
+
 		if f.Filter.HasProjectFilter {
 			if !f.todoPassesFilter(todo.Projects, f.Filter.Projects, f.Filter.ExcludeProjects) {
 				continue
 			}
 		}
 
-		if f.Filter.HasContextFilter {
-			if !f.todoPassesFilter(todo.Contexts, f.Filter.Contexts, f.Filter.ExcludeContexts) {
+		if f.Filter.HasTagFilter {
+			if !f.todoPassesFilter(todo.Tags, f.Filter.Tags, f.Filter.ExcludeTags) {
 				continue
 			}
 		}

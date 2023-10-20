@@ -18,9 +18,7 @@ func init() {
     ultodo s 33 none`
 
 		setStatusCmdLongDesc = `Sets the status of a todo item.
-  A status should be a single lower-case word, e.g. "now", "blocked", or "waiting".
-
-  For more info, see https://ultodo.io/docs/cli/managing_tasks/#handling-todo-statuses`
+  A status should be a single lower-case word, e.g. "now", "blocked", or "waiting".`
 	)
 
 	var setStatusCmd = &cobra.Command{
@@ -29,6 +27,7 @@ func init() {
 		Example: setStatusCmdExample,
 		Long:    setStatusCmdLongDesc,
 		Short:   setStatusCmdDesc,
+		Args:    cobra.MinimumNArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			ultodo.NewApp().SetTodoStatus(strings.Join(args, " "))
 		},
