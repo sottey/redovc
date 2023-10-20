@@ -7,10 +7,10 @@ import (
 
 // TodoList is the struct of a list with several todos.
 type TodoList struct {
-	Name     string `json:"name"`
-	UUID     string `json:"uuid"`
-	IsSynced bool
-	Data     []*Todo `json:"todo_items_attributes"`
+	Name string `json:"name"`
+	UUID string `json:"uuid"`
+	// IsSynced bool
+	Data []*Todo `json:"todo_items_attributes"`
 }
 
 // Load is loading a list with several todos.

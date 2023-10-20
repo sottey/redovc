@@ -10,7 +10,7 @@ import (
 
 func init() {
 	var (
-		addNoteCmdDesc    = "Adds notes to todos."
+		addNoteCmdDesc    = "Adds notes to a todo."
 		addNoteCmdExample = "  ultodo an 1 this is a note for the first todo"
 	)
 

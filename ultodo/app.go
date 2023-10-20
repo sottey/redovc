@@ -16,10 +16,10 @@ const (
 
 // App is the giving you the structure of the ultodo app.
 type App struct {
-	EventLogger *EventLogger
-	TodoStore   Store
-	Printer     Printer
-	TodoList    *TodoList
+	// EventLogger *EventLogger
+	TodoStore Store
+	Printer   Printer
+	TodoList  *TodoList
 }
 
 // NewApp is creating a new ultodo app.
@@ -63,7 +63,7 @@ func (a *App) AddTodo(input string) {
 	filter, err := parser.Parse(input)
 	if err != nil {
 		fmt.Println(err.Error())
-		fmt.Println("I need more information. Try something like 'todo a chat with #bob due tom'")
+		fmt.Println("I need more information. Try something like 'ultodo a chat with #bob +AcmeProject due:tom'")
 		return
 	}
 
@@ -75,7 +75,7 @@ func (a *App) AddTodo(input string) {
 
 	a.TodoList.Add(todoItem)
 	a.save()
-	fmt.Printf("Todo %d added:.\n", todoItem.ID)
+	fmt.Printf("Todo %d added\n", todoItem.ID)
 }
 
 // DeleteTodo deletes a todo.
@@ -331,7 +331,6 @@ func (a *App) load() error {
 		return err
 	}
 	a.TodoList.Load(todos)
-	a.EventLogger = NewEventLogger(a.TodoList, a.TodoStore)
 	return nil
 }
 
@@ -345,7 +344,6 @@ func (a *App) getID(input string) (int, error) {
 	id, err := strconv.Atoi(splitted[0])
 	if err != nil {
 		return -1, fmt.Errorf("invalid id: '%s'", splitted[0])
-		// return -1, errors.New(fmt.Sprintf("Invalid id: '%s'", splitted[0]))
 	}
 	return id, nil
 }
