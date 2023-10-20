@@ -208,6 +208,23 @@ func (t *TodoList) FindByID(id int) *Todo {
 	return nil
 }
 
+// FindByID finds a todo by ID.
+func (t *TodoList) FindByIDs(ids []int) []*Todo {
+	var todos []*Todo
+
+	for _, todo := range t.Data {
+		if contains(ids, todo.ID) {
+			todos = append(todos, todo)
+		}
+	}
+
+	if len(todos) == 0 {
+		return nil
+	} else {
+		return todos
+	}
+}
+
 // GarbageCollect deletes todos which are archived.
 func (t *TodoList) GarbageCollect() {
 	var toDelete []*Todo

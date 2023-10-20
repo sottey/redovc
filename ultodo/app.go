@@ -9,7 +9,7 @@ import (
 
 const (
 	// Current version of ultodo.
-	VERSION string = "1.7.1"
+	VERSION string = "1.7.2"
 
 	DATE_FORMAT string = "2006-01-02"
 )
@@ -75,7 +75,7 @@ func (a *App) AddTodo(input string) {
 
 	a.TodoList.Add(todoItem)
 	a.save()
-	fmt.Printf("Todo %d added.\n", todoItem.ID)
+	fmt.Printf("Todo %d added:.\n", todoItem.ID)
 }
 
 // DeleteTodo deletes a todo.
@@ -85,9 +85,16 @@ func (a *App) DeleteTodo(input string) {
 	if len(ids) == 0 {
 		return
 	}
+
+	// Get the todos so we an display info after deletion
+	deletedTodos := a.TodoList.FindByIDs(ids)
+
 	a.TodoList.Delete(ids...)
 	a.save()
-	fmt.Printf("%s deleted.\n", pluralize(len(ids), "Todo", "Todos"))
+
+	for _, todo := range deletedTodos {
+		fmt.Printf("Todo deleted. id:%d, Subject:%s\n", todo.ID, todo.Subject)
+	}
 }
 
 // CompleteTodo completes a todo.
@@ -102,7 +109,12 @@ func (a *App) CompleteTodo(input string, archive bool) {
 		a.TodoList.Archive(ids...)
 	}
 	a.save()
-	fmt.Println("Todo completed.")
+
+	completedTodos := a.TodoList.FindByIDs(ids)
+
+	for _, todo := range completedTodos {
+		fmt.Printf("Todo completed. id:%d, Subject:%s\n", todo.ID, todo.Subject)
+	}
 }
 
 // UncompleteTodo uncompletes a todo.
@@ -114,7 +126,11 @@ func (a *App) UncompleteTodo(input string) {
 	}
 	a.TodoList.Uncomplete(ids...)
 	a.save()
-	fmt.Println("Todo uncompleted.")
+
+	unCompletedTodos := a.TodoList.FindByIDs(ids)
+	for _, todo := range unCompletedTodos {
+		fmt.Printf("Todo uncompleted. id:%d, Subject:%s\n", todo.ID, todo.Subject)
+	}
 }
 
 // ArchiveTodo archives a todo.
@@ -126,7 +142,11 @@ func (a *App) ArchiveTodo(input string) {
 	}
 	a.TodoList.Archive(ids...)
 	a.save()
-	fmt.Println("Todo archived.")
+
+	archivedTodos := a.TodoList.FindByIDs(ids)
+	for _, todo := range archivedTodos {
+		fmt.Printf("Todo archived. id:%d, Subject:%s\n", todo.ID, todo.Subject)
+	}
 }
 
 // UnarchiveTodo unarchives a todo.
@@ -138,7 +158,11 @@ func (a *App) UnarchiveTodo(input string) {
 	}
 	a.TodoList.Unarchive(ids...)
 	a.save()
-	fmt.Println("Todo unarchived.")
+
+	unArchivedTodos := a.TodoList.FindByIDs(ids)
+	for _, todo := range unArchivedTodos {
+		fmt.Printf("Todo unarchived. id:%d, Subject:%s\n", todo.ID, todo.Subject)
+	}
 }
 
 // EditTodo edits a todo with the given input.

@@ -48,6 +48,15 @@ func UserHomeDir() string {
 	return home
 }
 
+func contains(s []int, e int) bool {
+	for _, v := range s {
+		if v == e {
+			return true
+		}
+	}
+	return false
+}
+
 func newUUID() string {
 	return (uuid.NewV4()).String()
 }

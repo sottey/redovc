@@ -41,7 +41,7 @@ func (f *TodoFilter) ApplyFilter() []*Todo {
 		}
 
 		if f.Filter.HasSearchString {
-			if !strings.Contains(todo.Subject, f.Filter.SearchString[0]) {
+			if !strings.Contains(strings.ToLower(todo.Subject), strings.ToLower(f.Filter.SearchString[0])) {
 				continue
 			}
 		}
