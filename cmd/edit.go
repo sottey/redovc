@@ -40,6 +40,11 @@ func init() {
 		Short:   editCmdDesc,
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) <= 0 {
+				fmt.Print("The edit command requires arguments. See ultralist e[dit] -h.\n")
+				return
+			}
+
 			todoID, err := strconv.Atoi(args[0])
 			if err != nil {
 				fmt.Printf("Could not parse todo ID: '%s'\n", args[0])

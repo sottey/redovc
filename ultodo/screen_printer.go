@@ -145,14 +145,19 @@ func (f *ScreenPrinter) formatStatus(status string, isPriority bool) string {
 func (f *ScreenPrinter) formatInformation(todo *Todo) string {
 	var information []string
 	if todo.IsPriority {
-		information = append(information, "*")
+		information = append(information, "P")
 	} else {
-		information = append(information, " ")
+		information = append(information, "-")
 	}
 	if todo.HasNotes() {
 		information = append(information, "N")
 	} else {
-		information = append(information, " ")
+		information = append(information, "-")
+	}
+	if todo.Archived {
+		information = append(information, "A")
+	} else {
+		information = append(information, "-")
 	}
 
 	return white.Sprint(strings.Join(information, ""))

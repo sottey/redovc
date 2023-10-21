@@ -46,7 +46,7 @@ func (f *FileStore) Load() ([]*Todo, error) {
 	if err != nil {
 		fmt.Println("No todo file found!")
 		fmt.Println("Initialize a new todo repo by running 'ultodo init'")
-		os.Exit(0)
+		os.Exit(1)
 		return nil, err
 	}
 

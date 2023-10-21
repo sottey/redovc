@@ -100,19 +100,19 @@ func (f *SimpleScreenPrinter) formatDue(due string, isPriority bool, completed b
 func (f *SimpleScreenPrinter) formatInformation(todo *Todo) string {
 	var information []string
 	if todo.IsPriority {
-		information = append(information, "*")
+		information = append(information, "P")
 	} else {
-		information = append(information, " ")
+		information = append(information, "-")
 	}
 	if todo.HasNotes() {
 		information = append(information, "N")
 	} else {
-		information = append(information, " ")
+		information = append(information, "-")
 	}
 	if todo.Archived {
 		information = append(information, "A")
 	} else {
-		information = append(information, " ")
+		information = append(information, "-")
 	}
 	return strings.Join(information, "")
 }

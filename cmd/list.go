@@ -128,7 +128,7 @@ func init() {
 
   If you pass --status=true as a flag, you'll see an extra column when listing todos.
 
-  * = Todo is prioritized
+  P = Todo is prioritized
   N = Todo has notes attached
   A = Todo is archived
 `
@@ -149,8 +149,8 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 	}
 
 	rootCmd.AddCommand(listCmd)
-	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in ultodo output")
-	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in ultodo output")
-	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing.")
-	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status")
+	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in ultodo output (default: true)")
+	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in ultodo output (default: true)")
+	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. (default: false)")
+	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status (default: false)")
 }
