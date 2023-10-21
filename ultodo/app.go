@@ -89,6 +89,11 @@ func (a *App) DeleteTodo(input string) {
 	// Get the todos so we an display info after deletion
 	deletedTodos := a.TodoList.FindByIDs(ids)
 
+	if len(deletedTodos) == 0 {
+		fmt.Printf("No todo entries found with that id\n")
+		return
+	}
+
 	a.TodoList.Delete(ids...)
 	a.save()
 

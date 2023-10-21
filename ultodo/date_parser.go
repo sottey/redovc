@@ -16,11 +16,11 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 	case "none":
 		return time.Time{}, nil
 	case "yesterday", "yes":
-		return bod(pivotDay).AddDate(0, 0, -1), nil
+		return adjustedDateWithoutTime(pivotDay).AddDate(0, 0, -1), nil
 	case "today", "tod":
-		return bod(pivotDay), nil
+		return adjustedDateWithoutTime(pivotDay), nil
 	case "tomorrow", "tom", "agenda":
-		return bod(pivotDay).AddDate(0, 0, 1), nil
+		return adjustedDateWithoutTime(pivotDay).AddDate(0, 0, 1), nil
 	case "monday", "mon":
 		return dp.monday(pivotDay), nil
 	case "tuesday", "tue":
@@ -36,11 +36,29 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 	case "sunday", "sun":
 		return dp.sunday(pivotDay), nil
 	case "lastweek":
-		n := bod(pivotDay)
+		n := adjustedDateWithoutTime(pivotDay)
+		fmt.Printf("lastweek: pivotDay: %v\n", pivotDay)
+		fmt.Printf("lastweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, -7))
 		return dp.getNearestMonday(n).AddDate(0, 0, -7), nil
+	case "thisweek":
+		n := adjustedDateWithoutTime(pivotDay)
+		fmt.Printf("thisweek: pivotDay: %v\n", pivotDay)
+		fmt.Printf("thisweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, -1))
+		return dp.getNearestMonday(n).AddDate(0, 0, -1), nil
 	case "nextweek":
-		n := bod(pivotDay)
+		n := adjustedDateWithoutTime(pivotDay)
+		fmt.Printf("nextweek: pivotDay: %v\n", pivotDay)
+		fmt.Printf("nextweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, 7))
 		return dp.getNearestMonday(n).AddDate(0, 0, 7), nil
+	case "thismonth":
+		n := adjustedDateWithoutTime(pivotDay)
+		return dp.getNearestFirstOfMonth(n), nil
+	case "lastmonth":
+		n := adjustedDateWithoutTime(pivotDay)
+		return dp.getNearestFirstOfMonth(n).AddDate(0, -1, 0), nil
+	case "nextmonth":
+		n := adjustedDateWithoutTime(pivotDay)
+		return dp.getNearestFirstOfMonth(n).AddDate(0, 1, 0), nil
 	}
 	return dp.parseSpecificDate(dateString, pivotDay)
 }
@@ -113,6 +131,16 @@ func (dp *DateParser) parseSpecificDate(date string, pivot time.Time) (time.Time
 func (dp *DateParser) getNearestMonday(t time.Time) time.Time {
 	for {
 		if t.Weekday() != time.Monday {
+			t = t.AddDate(0, 0, -1)
+		} else {
+			return t
+		}
+	}
+}
+
+func (dp *DateParser) getNearestFirstOfMonth(t time.Time) time.Time {
+	for {
+		if t.Day() != 1 {
 			t = t.AddDate(0, 0, -1)
 		} else {
 			return t

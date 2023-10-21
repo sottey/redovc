@@ -5,7 +5,6 @@ go 1.21
 require (
 	github.com/cheynewallace/tabby v1.1.1
 	github.com/fatih/color v1.15.0
-	github.com/jinzhu/copier v0.4.0
 	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.4
 	github.com/twinj/uuid v1.0.0
