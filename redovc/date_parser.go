@@ -37,18 +37,12 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 		return dp.sunday(pivotDay), nil
 	case "lastweek":
 		n := adjustedDateWithoutTime(pivotDay)
-		fmt.Printf("lastweek: pivotDay: %v\n", pivotDay)
-		fmt.Printf("lastweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, -7))
 		return dp.getNearestMonday(n).AddDate(0, 0, -7), nil
 	case "thisweek":
 		n := adjustedDateWithoutTime(pivotDay)
-		fmt.Printf("thisweek: pivotDay: %v\n", pivotDay)
-		fmt.Printf("thisweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, -1))
 		return dp.getNearestMonday(n).AddDate(0, 0, -1), nil
 	case "nextweek":
 		n := adjustedDateWithoutTime(pivotDay)
-		fmt.Printf("nextweek: pivotDay: %v\n", pivotDay)
-		fmt.Printf("nextweek: Nearest Monday: %v\n", dp.getNearestMonday(n).AddDate(0, 0, 7))
 		return dp.getNearestMonday(n).AddDate(0, 0, 7), nil
 	case "thismonth":
 		n := adjustedDateWithoutTime(pivotDay)

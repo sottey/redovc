@@ -1,0 +1,7 @@
+site_name: redo.vc
+site_url: https://redo.vc/
+# theme: material
+nav:
+  - Home: index.md
+  - Usage: usage.md
+
