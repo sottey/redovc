@@ -7,8 +7,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "ultodo",
-	Short: "ultodo, simple task management for tech folks.",
+	Use:   "redovc",
+	Short: "redovc, simple task management for tech folks.",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

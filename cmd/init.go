@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -18,7 +18,7 @@ This will create a .todos.json in the directory you're in.  You can then start a
 		Long:  initCmdLongDesc,
 		Short: initCmdDesc,
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().InitializeRepo()
+			redovc.NewApp().InitializeRepo()
 		},
 	}
 

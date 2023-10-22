@@ -1,4 +1,4 @@
-module github.com/sottey/ultodo
+module github.com/sottey/redo.vc
 
 go 1.21
 

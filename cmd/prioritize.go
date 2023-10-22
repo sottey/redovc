@@ -3,19 +3,19 @@ package cmd
 import (
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
 func init() {
 	var (
 		example = `  To prioritize a todo with id 33:
-    ultodo prioritize 33
-    ultodo p 33
+    redovc prioritize 33
+    redovc p 33
 
   To un-prioritize a todo with an id 33:
-    ultodo unprioritize 33
-    ultodo up 33`
+    redovc unprioritize 33
+    redovc up 33`
 
 		long = `Prioritize and un-prioritize todos.
 
@@ -30,7 +30,7 @@ func init() {
 		Short:   "Prioritize a todo.",
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().PrioritizeTodo(strings.Join(args, " "))
+			redovc.NewApp().PrioritizeTodo(strings.Join(args, " "))
 		},
 	}
 
@@ -42,7 +42,7 @@ func init() {
 		Short:   "Un-prioritize a todo.",
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().UnprioritizeTodo(strings.Join(args, " "))
+			redovc.NewApp().UnprioritizeTodo(strings.Join(args, " "))
 		},
 	}
 

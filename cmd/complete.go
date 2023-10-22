@@ -3,7 +3,7 @@ package cmd
 import (
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -13,15 +13,15 @@ func init() {
 		long                 = `Completes or un-completes a todo.`
 		completeCmdExample   = `
   Complete a todo with id 33:
-    ultodo complete 33
-    ultodo c 33
+    redovc complete 33
+    redovc c 33
 
   Complete a todo with id 33 and archive it:
-    ultodo uncomplete 33 --archive
+    redovc uncomplete 33 --archive
 
   Uncompletes todo with id 33.
-    ultodo uncomplete 33
-    ultodo uc 33`
+    redovc uncomplete 33
+    redovc uc 33`
 	)
 
 	var completeCmd = &cobra.Command{
@@ -32,7 +32,7 @@ func init() {
 		Long:    long,
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().CompleteTodo(strings.Join(args, " "), archiveCompletedTodo)
+			redovc.NewApp().CompleteTodo(strings.Join(args, " "), archiveCompletedTodo)
 		},
 	}
 
@@ -44,7 +44,7 @@ func init() {
 		Long:    long,
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().UncompleteTodo(strings.Join(args, " "))
+			redovc.NewApp().UncompleteTodo(strings.Join(args, " "))
 		},
 	}
 

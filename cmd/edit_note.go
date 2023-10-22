@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -13,10 +13,10 @@ func init() {
 		cmdDesc     = "Edits notes on a todo."
 		longCmdDesc = "Edits notes on a todo."
 		example     = `  To see your todos with notes:
-    ultodo list --notes
+    redovc list --notes
 
   To edit note 0 from todo 3:
-    ultodo en 3 0 this is the new note`
+    redovc en 3 0 this is the new note`
 	)
 	var editNoteCmd = &cobra.Command{
 		Use:     "editnote",
@@ -28,7 +28,7 @@ func init() {
 		Run: func(cmd *cobra.Command, args []string) {
 			todoID, _ := strconv.Atoi(args[0])
 			noteID, _ := strconv.Atoi(args[1])
-			ultodo.NewApp().EditNote(todoID, noteID, strings.Join(args[2:], " "))
+			redovc.NewApp().EditNote(todoID, noteID, strings.Join(args[2:], " "))
 		},
 	}
 

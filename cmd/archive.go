@@ -3,7 +3,7 @@ package cmd
 import (
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -11,23 +11,23 @@ func init() {
 	var (
 		archiveCmdExample = `
   To archive a todo with id 33:
-    ultodo archive 33
-    ultodo ar 33
+    redovc archive 33
+    redovc ar 33
 
   To unarchive todo with id 33:
-    ultodo unarchive 33
-    ultodo uar 33
+    redovc unarchive 33
+    redovc uar 33
 
   To archive all completed todos:
-    ultodo archive completed
-    ultodo ar c
+    redovc archive completed
+    redovc ar c
 
   Garbage collection will delete all archived todos, reclaming ids:
-    ultodo archive gc
-    ultodo ar gc
+    redovc archive gc
+    redovc ar gc
 
-  ultodo archive gc
-  ultodo ar gc
+  redovc archive gc
+  redovc ar gc
 	  Run garbage collection. Delete all archived todos and reclaim ids`
 	)
 
@@ -37,7 +37,7 @@ func init() {
 		Example: archiveCmdExample,
 		Short:   "Archives a todo.",
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().ArchiveTodo(strings.Join(args, " "))
+			redovc.NewApp().ArchiveTodo(strings.Join(args, " "))
 		},
 	}
 
@@ -47,17 +47,17 @@ func init() {
 		Example: archiveCmdExample,
 		Short:   "Un-archives a todo.",
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().UnarchiveTodo(strings.Join(args, " "))
+			redovc.NewApp().UnarchiveTodo(strings.Join(args, " "))
 		},
 	}
 
 	var archiveCompletedCmd = &cobra.Command{
 		Use:     "c",
-		Example: "  ultodo archive completed\n  ultodo ar c",
+		Example: "  redovc archive completed\n  redovc ar c",
 		Short:   "Archives all completed todos.",
 		Long:    `Archives all completed todos.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().ArchiveCompleted()
+			redovc.NewApp().ArchiveCompleted()
 		},
 	}
 
@@ -67,7 +67,7 @@ func init() {
 		Short:   "Deletes all archived todos.",
 		Long:    `Delete all archived todos, reclaiming ids.`,
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().GarbageCollect()
+			redovc.NewApp().GarbageCollect()
 		},
 	}
 

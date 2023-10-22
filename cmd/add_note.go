@@ -4,14 +4,14 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
 func init() {
 	var (
 		addNoteCmdDesc    = "Adds notes to a todo."
-		addNoteCmdExample = "  ultodo an 1 this is a note for the first todo"
+		addNoteCmdExample = "  redovc an 1 this is a note for the first todo"
 	)
 
 	var addNoteCmd = &cobra.Command{
@@ -22,7 +22,7 @@ func init() {
 		Args:    cobra.MinimumNArgs(2),
 		Run: func(cmd *cobra.Command, args []string) {
 			todoID, _ := strconv.Atoi(args[0])
-			ultodo.NewApp().AddNote(todoID, strings.Join(args[1:], " "))
+			redovc.NewApp().AddNote(todoID, strings.Join(args[1:], " "))
 		},
 	}
 	rootCmd.AddCommand(addNoteCmd)

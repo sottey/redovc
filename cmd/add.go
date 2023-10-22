@@ -3,17 +3,17 @@ package cmd
 import (
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
 func init() {
 	var (
 		addCmdDesc    = "Adds todos"
-		addCmdExample = `  ultodo add Prepare meeting notes about +importantProject for the meeting with #bob due:today
-  ultodo add Meeting with #bob about +project due:tod
-  ultodo a +work +verify did #john fix the build? due:tom
-  ultodo a here is an important task priority:true recur:weekdays due:tom`
+		addCmdExample = `  redovc add Prepare meeting notes about +importantProject for the meeting with #bob due:today
+  redovc add Meeting with #bob about +project due:tod
+  redovc a +work +verify did #john fix the build? due:tom
+  redovc a here is an important task priority:true recur:weekdays due:tom`
 
 		addCmdLongDesc = `Adds todos.
 
@@ -21,12 +21,12 @@ func init() {
   This can be done by by putting 'due:<date>' at the end, where <date> is in (tod|today|tom|tomorrow|mon|tue|wed|thu|fri|sat|sun|thisweek|nextweek).
 
   Dates can also be explicit, using 3 characters for the month.  They can be written in 2 different formats:
-    ultodo a buy flowers for mom due:may12
-    ultodo get halloween candy due:31oct
+    redovc a buy flowers for mom due:may12
+    redovc get halloween candy due:31oct
 
   Todos can also recur.  Set the 'recur' directive to control recurrence:
-    ultodo a Daily standup recur:weekdays
-    ultodo a 1on1 meeting with jim recur:weekly
+    redovc a Daily standup recur:weekdays
+    redovc a 1on1 meeting with jim recur:weekly
 `
 	)
 
@@ -38,7 +38,7 @@ func init() {
 		Short:   addCmdDesc,
 		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			ultodo.NewApp().AddTodo(strings.Join(args, " "))
+			redovc.NewApp().AddTodo(strings.Join(args, " "))
 		},
 	}
 

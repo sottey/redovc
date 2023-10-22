@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sottey/ultodo/ultodo"
+	"github.com/sottey/redo.vc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -16,20 +16,20 @@ func init() {
 
   You can edit all facets of a todo.`
 		editCmdExample = `  To edit a todo's subject:
-    ultodo edit 33 Meeting with #bob about +project
-    ultodo e 33 Change the subject once again
+    redovc edit 33 Meeting with #bob about +project
+    redovc e 33 Change the subject once again
 
   To edit just the due date, keeping the subject:
-    ultodo edit 33 due:mon
+    redovc edit 33 due:mon
 
   To remove a due date:
-    ultodo edit 33 due none
+    redovc edit 33 due none
 
   To edit a status
-    ultodo edit 33 status:next
+    redovc edit 33 status:next
 
 	To remove a status:
-    ultodo edit 33 status:none`
+    redovc edit 33 status:none`
 	)
 
 	var editCmd = &cobra.Command{
@@ -50,7 +50,7 @@ func init() {
 				fmt.Printf("Could not parse todo ID: '%s'\n", args[0])
 				return
 			}
-			ultodo.NewApp().EditTodo(todoID, strings.Join(args[1:], " "))
+			redovc.NewApp().EditTodo(todoID, strings.Join(args[1:], " "))
 		},
 	}
 
