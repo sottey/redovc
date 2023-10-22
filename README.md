@@ -1,4 +1,4 @@
-# redo.vc (formerly ultodo)
+# redo.vc
 Built on [ultralist](https://github.com/ultralist)
 
 Redo.vc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
