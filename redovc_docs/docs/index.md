@@ -34,8 +34,6 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 * Config file defaults
 * Whatever you would like to see! [Let me know](https://github.com/sottey/redo.vc/discussions)
 
-## GitHub
-All source code is available on [GitHub](https://github.com/sottey/redo.vc)
 
 ## Building
 
