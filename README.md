@@ -57,7 +57,7 @@ rake build
 
 ## Shoutouts
 
-* [ultralist](https://github.com/ultralist) - HUGE thanks to everyone who created [ultralist](https://github.com/ultralist), an amazing todo tool!
+* [ultralist](https://github.com/gammons/ultralist) - HUGE thanks to everyone who created [ultralist](https://github.com/gammons/ultralist), an amazing todo tool!
 
 
 ## License
