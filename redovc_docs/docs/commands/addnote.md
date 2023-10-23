@@ -12,4 +12,4 @@ Adds a note to a todo
 `redovc an 1 this is a note for the first todo`
 
 ## Flags
-  -h, --help   help for addnote
+`-h, --help   help for addnote`

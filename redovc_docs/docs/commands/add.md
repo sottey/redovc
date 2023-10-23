@@ -1,5 +1,5 @@
 # add command
-Adds todos.
+Adds a todo
 
   You can optionally specify a due date.
   This can be done by by putting 'due:<date>' at the end, where <date> is in (tod|today|tom|tomorrow|mon|tue|wed|thu|fri|sat|sun|thisweek|nextweek).
@@ -32,4 +32,4 @@ Adds todos.
 `redovc a here is an important task priority:true recur:weekdays due:tom`
 
 ## Flags
-  -h, --help   help for add
+`-h, --help   help for add`

@@ -43,10 +43,10 @@
 	  Run garbage collection. Delete all archived todos and reclaim ids
 
 ## Available Commands:
-  c           Archives all completed todos.
-  gc          Deletes all archived todos.
+```  
+c           Archives all completed todos.
+gc          Deletes all archived todos.
+```
 
 ## Flags:
-  -h, --help   help for archive
-
-Use "redovc archive [command] --help" for more information about a command.
+`-h, --help   help for archive`

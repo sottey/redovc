@@ -42,7 +42,7 @@ Redo.vc is available for most configurations. Go to the relase page, download th
 
 Once the file has downloaded, extract the binary and put it somewhere that is accessible from your terminal.
 
-To run the app, just use the command redovc (some releases use the previous name redovc). To learn more about what you can do with the app, use the following command:
+To run the app, just use the command redovc (some releases use the previous name ultodo). To learn more about what you can do with the app, use the following command:
 ```
 redovc --help
 ```
