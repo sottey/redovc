@@ -2,6 +2,7 @@ package redovc
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -195,6 +196,31 @@ func (a *App) EditTodo(todoID int, input string) {
 	fmt.Println("Todo updated.")
 }
 
+// Export exports all data to a specified format
+func (a *App) Export(exportType string) {
+	jsonData, err := a.GetJSONFileContents()
+
+	if err != nil {
+		fmt.Printf("Error getting contents: %v\n", err)
+		return
+	}
+
+	switch exportType {
+	case "json":
+		fmt.Printf("%v\n", string(jsonData))
+		return
+	case "csv":
+		JSONtoCSV(jsonData)
+		return
+	case "text", "txt":
+		fmt.Println("text format not yet implemented")
+		return
+	default:
+		fmt.Println("Invalid export format specified: '" + exportType + "'")
+		return
+	}
+}
+
 // AddNote adds a note to a todo.
 func (a *App) AddNote(todoID int, note string) {
 	a.load()
@@ -327,6 +353,15 @@ func (a *App) GarbageCollect() {
 	a.TodoList.GarbageCollect()
 	a.save()
 	fmt.Println("Garbage collection complete.")
+}
+
+func (a *App) GetJSONFileContents() ([]byte, error) {
+	data, err := os.ReadFile(a.TodoStore.GetLocation())
+	if err != nil {
+		return nil, err
+	}
+
+	return data, nil
 }
 
 // load the todolist from the todo store.

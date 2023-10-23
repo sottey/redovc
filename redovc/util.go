@@ -1,11 +1,14 @@
 package redovc
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"os"
 	"time"
 
 	"github.com/twinj/uuid"
+	"github.com/yukithm/json2csv"
 )
 
 // AddIfNotThere is appending an item to an array if the item is not already present.
@@ -99,4 +102,33 @@ func isTomorrow(t time.Time) bool {
 
 func isPastDue(t time.Time) bool {
 	return time.Now().After(t)
+}
+
+func JSONtoCSV(jsonData []byte) {
+	b := &bytes.Buffer{}
+	wr := json2csv.NewCSVWriter(b)
+	var x []map[string]interface{}
+
+	// unMarshall json
+	err := json.Unmarshal(jsonData, &x)
+	if err != nil {
+		fmt.Printf("Error reading .todos.json file: %v\n", err)
+	}
+
+	// convert json to CSV
+	csv, err := json2csv.JSON2CSV(x)
+	if err != nil {
+		fmt.Printf("Error reading .todos.json file: %v\n", err)
+	}
+
+	// CSV bytes convert & writing...
+	err = wr.WriteCSV(csv)
+	if err != nil {
+		fmt.Printf("Error reading .todos.json file: %v\n", err)
+	}
+	wr.Flush()
+	got := b.String()
+
+	//Following line prints CSV
+	fmt.Println(got)
 }
