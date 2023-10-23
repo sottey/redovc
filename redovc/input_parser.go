@@ -196,13 +196,14 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 			filter.HasRecur = true
 			filter.Recur = r.FindString(word)[6:]
 
-			if filter.Recur == "none" {
-				filter.Recur = ""
-			}
-
 			r := &Recurrence{}
+
 			if !r.ValidRecurrence(filter.Recur) {
 				return filter, fmt.Errorf("i could not understand the recurrence you gave me: '%s'", filter.Recur)
+			}
+
+			if filter.Recur == "none" {
+				filter.Recur = ""
 			}
 		}
 

@@ -21,7 +21,7 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 		return adjustedDateWithoutTime(pivotDay), nil
 	case "tomorrow", "tom", "agenda":
 		return adjustedDateWithoutTime(pivotDay).AddDate(0, 0, 1), nil
-	case "monday", "mon":
+	case "monday", "mon", "sow", "soww":
 		return dp.monday(pivotDay), nil
 	case "tuesday", "tue":
 		return dp.tuesday(pivotDay), nil
@@ -29,11 +29,11 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 		return dp.wednesday(pivotDay), nil
 	case "thursday", "thu":
 		return dp.thursday(pivotDay), nil
-	case "friday", "fri":
+	case "friday", "fri", "eoww":
 		return dp.friday(pivotDay), nil
 	case "saturday", "sat":
 		return dp.saturday(pivotDay), nil
-	case "sunday", "sun":
+	case "sunday", "sun", "eocw", "eow":
 		return dp.sunday(pivotDay), nil
 	case "lastweek":
 		n := adjustedDateWithoutTime(pivotDay)
@@ -53,6 +53,10 @@ func (dp *DateParser) ParseDate(dateString string, pivotDay time.Time) (date tim
 	case "nextmonth":
 		n := adjustedDateWithoutTime(pivotDay)
 		return dp.getNearestFirstOfMonth(n).AddDate(0, 1, 0), nil
+	case "eoy":
+		return dp.parseSpecificDate("dec31", pivotDay)
+	case "soy":
+		return dp.parseSpecificDate("jan1", pivotDay)
 	}
 	return dp.parseSpecificDate(dateString, pivotDay)
 }

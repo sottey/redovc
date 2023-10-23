@@ -30,6 +30,7 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 * Theming
 * Syncing via cloud providers (Google Drive, iCloud, Dropbox, etc.)
 * Web UI
+* Adding additional due strings (End of quarter, End of Month)
 * Importing from common formats
 * Config file defaults
 * Whatever you would like to see! [Let me know](https://github.com/sottey/redo.vc/discussions)
