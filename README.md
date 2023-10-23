@@ -1,17 +1,16 @@
 # redo.vc
-Built on [ultralist](https://github.com/ultralist)
-
+---
 Redo.vc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
 
-Soon, full documentation will be avilable at [redo.vc](https://redo.vc)
-
+## Getting Started
+To learn about available redo.vc commands, see the [usage page](https://redo.vc/usage/)
 
 ## Features
 
-* Tasks can be assigned to a project.
+* Tasks can be assigned to a project
 * Projects can be created dynamically while creating todos
 * Tasks can have a due date or NO due date
-* Tags can be specified by using the '#' prepended to single word. If it does not exist, it will be created.
+* Tags can be specified by using the '#' prepended to single word. If it does not exist, it will be created
 * Projects can be specified by using the '+' prepended to a single word in the description. If the project does not exist, it will be created
 * Tasks can be prioritized
 * Notes can be added to tasks and shown or hidden when listing tasks
@@ -33,24 +32,16 @@ Soon, full documentation will be avilable at [redo.vc](https://redo.vc)
 * Web UI
 * Importing from common formats
 * Config file defaults
-* Whatever you would like to see!
+* Whatever you would like to see! [Let me know](https://github.com/sottey/redo.vc/discussions)
 
+## GitHub
+All source code is available on [GitHub](https://github.com/sottey/redo.vc)
 
-## Builds
+## Building
 
 Redo.vc is available for most configurations. Go to the relase page, download the proper archive for your device. 
 
 Once the file has downloaded, extract the binary and put it somewhere that is accessible from your terminal.
-
-To run the app, just use the command redovc (some releases use the previous name ultodo). To learn more about what you can do with the app, use the following command:
-```
-redovc --help
-```
-
-To learn about a specific command, run redovc with the command and then --help:
-```
-redovc [command] --help
-```
 
 ## Contribute
 
