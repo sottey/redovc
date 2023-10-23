@@ -6,12 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://redo.vc/usage/">
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Usage - redo.vc</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
+        <link rel="canonical" href="https://redo.vc/commands/uncomplete/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>uncomplete command - redo.vc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
@@ -20,7 +20,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">redo.vc</a>
+                <a class="navbar-brand" href="../..">redo.vc</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -31,10 +31,10 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
+                                <a href="../.." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Usage</a>
+                            <li class="navitem">
+                                <a href="../../usage/" class="nav-link">Usage</a>
                             </li>
                             <li class="navitem">
                                 <a href="https://github.com/sottey/redo.vc" class="nav-link">On GitHub</a>
@@ -47,16 +47,6 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
                     </ul>
                 </div>
             </div>
@@ -75,13 +65,21 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#usage" class="nav-link">Usage</a>
+            <li class="nav-item" data-level="1"><a href="#uncomplete-command" class="nav-link">uncomplete command</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#getting-help" class="nav-link">Getting help</a>
+            <li class="nav-item" data-level="2"><a href="#usage" class="nav-link">Usage</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-level="2"><a href="#aliases" class="nav-link">Aliases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#examples" class="nav-link">Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#flags" class="nav-link">Flags</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -92,35 +90,23 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="usage">Usage</h1>
-<h2 id="getting-help">Getting help</h2>
-<p>To run the app, just use the command redovc (some releases use the previous name ultodo). To learn more about what you can do with the app, use the following command:</p>
-<pre><code>redovc --help
-</code></pre>
-<p>To learn about a specific command, run redovc with the command and then --help:</p>
-<pre><code>redovc [command] --help
-</code></pre>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><a href="../commands/add/"><strong>add</strong></a> Add a todo </li>
-<li><a href="../commands/addnote/"><strong>addnote</strong></a> Add a note to a todo</li>
-<li><a href="../commands/archive/"><strong>archive</strong></a> Archive a todo</li>
-<li><a href="../commands/complete/"><strong>complete</strong></a>     Complete a todo</li>
-<li><a href="../commands/completion/"><strong>completion</strong></a> Generate the autocompletion script for the specified shell</li>
-<li><a href="../commands/delete/"><strong>delete</strong></a>       Delete a todo</li>
-<li><a href="../commands/deletenote/"><strong>deletenote</strong></a>   Delete a note from a todo</li>
-<li><a href="../commands/edit/"><strong>edit</strong></a>         Edit a todo</li>
-<li><a href="../commands/editnote/"><strong>editnote</strong></a>     Edit notes on a todo</li>
-<li><a href="../commands/help/"><strong>help</strong></a>         Help about any command</li>
-<li><a href="../commands/init/"><strong>init</strong></a>         Initializes a new todo list in the current directory</li>
-<li><a href="../commands/list/"><strong>list</strong></a>         List todos</li>
-<li><a href="../commands/prioritize/"><strong>prioritize</strong></a>   Prioritize a todo</li>
-<li><a href="../commands/status/"><strong>status</strong></a>       Sets the status of a todo item</li>
-<li><a href="../commands/unarchive/"><strong>unarchive</strong></a>    Un-archives a todo</li>
-<li><a href="../commands/uncomplete/"><strong>uncomplete</strong></a>   Un-completes a todo</li>
-<li><a href="../commands/unprioritize/"><strong>unprioritize</strong></a> Un-prioritize a todo</li>
-<li><a href="../commands/version/"><strong>version</strong></a>      Displays the version of redovc</li>
-</ul></div>
+<h1 id="uncomplete-command">uncomplete command</h1>
+<p>Completes or un-completes a todo</p>
+<h2 id="usage">Usage</h2>
+<p><code>redovc uncomplete [id] [flags]</code></p>
+<h2 id="aliases">Aliases</h2>
+<p>uncomplete, uc</p>
+<h2 id="examples">Examples</h2>
+<h4 id="complete-a-todo-with-id-33">Complete a todo with id 33:</h4>
+<p><code>redovc complete 33</code></p>
+<p><code>redovc c 33</code></p>
+<h4 id="complete-a-todo-with-id-33-and-archive-it">Complete a todo with id 33 and archive it:</h4>
+<p><code>redovc uncomplete 33 --archive</code></p>
+<h4 id="uncompletes-todo-with-id-33">Uncompletes todo with id 33.</h4>
+<p><code>redovc uncomplete 33</code></p>
+<p><code>redovc uc 33</code></p>
+<h2 id="flags">Flags</h2>
+<p><code>-h, --help   help for uncomplete</code></p></div>
             </div>
         </div>
 
@@ -128,14 +114,14 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
         <script>
-            var base_url = "..",
+            var base_url = "../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js"></script>
-        <script src="../search/main.js"></script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

@@ -14,7 +14,7 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 * Projects can be specified by using the '+' prepended to a single word in the description. If the project does not exist, it will be created
 * Tasks can be prioritized
 * Notes can be added to tasks and shown or hidden when listing tasks
-* Due dates can be absolute (oct25) or relative (monday, today, etc.)
+* Due dates can be absolute (oct25, 25oct) or relative (monday, today, none, etc.)
 * Tasks can be marked as completed
 * Tasks can be archived
 * Tasks can be deleted

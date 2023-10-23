@@ -1,4 +1,6 @@
 # Usage
+
+## Getting help
 To run the app, just use the command redovc (some releases use the previous name ultodo). To learn more about what you can do with the app, use the following command:
 ```
 redovc --help
@@ -10,8 +12,6 @@ redovc [command] --help
 ```
 
 ## Commands
-
-#### Available Commands
   * [**add**](commands/add.md) Add a todo 
   * [**addnote**](commands/addnote.md) Add a note to a todo
   * [**archive**](commands/archive.md) Archive a todo
