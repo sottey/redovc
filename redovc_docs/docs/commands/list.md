@@ -48,6 +48,9 @@ soy - Start Of year (next jan1)
 [specific date] - Examples: oct11, 15jan, may30
 `
 
+#### Show Infomation flags (Priority, Note, Archived flags)
+
+`redovc list --showinfo` or `redovc list --showinfo=true`
 
 ##### List all todos due today:
 
@@ -173,7 +176,7 @@ Of course, you can combine grouping and filtering to get a nice formatted list.
 
 ##### Indicator flags
 
-If you pass --status=true as a flag, you'll see an extra column when listing todos.
+If you pass --showinfo or --showinfo=true as a flag, you'll see an extra column when listing todos.
 
 ###### P = Todo is prioritized
 ###### N = Todo has notes attached
@@ -188,6 +191,6 @@ If you pass --status=true as a flag, you'll see an extra column when listing tod
 
 `--notes     Show a todo's notes when listing. (default: false)`
 
-`--status    Show a todo's status (default: false)`
+`--showinfo  Show a todo's flags (Priority, Note and Archived status) (default: false)`
 
 `--unicode   Allows unicode support in redovc output (default: true) (default true)`

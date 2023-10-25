@@ -12,7 +12,7 @@ func init() {
 		unicodeSupport bool
 		colorSupport   bool
 		listNotes      bool
-		showStatus     bool
+		showInfoFlags  bool
 		listCmdDesc    = "List todos."
 		listCmdExample = `
   Filtering by date:
@@ -126,7 +126,7 @@ func init() {
   Indicator flags
   ---------------
 
-  If you pass --status=true as a flag, you'll see an extra column when listing todos.
+  If you pass --showinfo or --showInfo=true as a flag, you'll see an extra column when listing todos.
 
   P = Todo is prioritized
   N = Todo has notes attached
@@ -144,7 +144,7 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 		Long:    listCmdLongDesc,
 		Short:   listCmdDesc,
 		Run: func(cmd *cobra.Command, args []string) {
-			redovc.NewAppWithPrintOptions(unicodeSupport, colorSupport).ListTodos(strings.Join(args, " "), listNotes, showStatus)
+			redovc.NewAppWithPrintOptions(unicodeSupport, colorSupport).ListTodos(strings.Join(args, " "), listNotes, showInfoFlags)
 		},
 	}
 
@@ -152,5 +152,5 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. (default: false)")
-	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status (default: false)")
+	listCmd.Flags().BoolVarP(&showInfoFlags, "showinfo", "", false, "Show a todo's information flags (Priority, Note and Archived)")
 }

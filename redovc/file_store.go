@@ -10,6 +10,9 @@ import (
 // TodosJSONFile is the filename to store todos in
 const TodosJSONFile = ".todos.json"
 
+// TodosThemeFile is the filename containing theme information
+const TodosThemeFile = ".todos.theme.json"
+
 // FileStore is the main struct of this file.
 type FileStore struct {
 	Loaded bool
@@ -30,12 +33,31 @@ func (f *FileStore) Initialize() {
 		fmt.Println("Error writing json file", err)
 		os.Exit(1)
 	}
+
+	if f.LocalThemeFileExists() {
+		fmt.Println("It looks like a .todos.theme.json file already exists!  Doing nothing.")
+		os.Exit(0)
+	}
+
+	fmt.Println("creating theme file")
+	if err := os.WriteFile(TodosThemeFile, []byte(themeTemplate), 0644); err != nil {
+		fmt.Println("Error writing theme file", err)
+		os.Exit(1)
+	}
 }
 
 // Returns if a local .todos.json file exists in the current dir.
 func (f *FileStore) LocalTodosFileExists() bool {
 	dir, _ := os.Getwd()
 	localrepo := filepath.Join(dir, TodosJSONFile)
+	_, err := os.Stat(localrepo)
+	return err == nil
+}
+
+// Returns if a local .todos.theme.json file exists in the current dir.
+func (f *FileStore) LocalThemeFileExists() bool {
+	dir, _ := os.Getwd()
+	localrepo := filepath.Join(dir, TodosThemeFile)
 	_, err := os.Stat(localrepo)
 	return err == nil
 }

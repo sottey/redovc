@@ -26,7 +26,7 @@ func NewSimpleScreenPrinter(unicodeSupport bool) *SimpleScreenPrinter {
 }
 
 // Print prints the output of redovc to the terminal screen.
-func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showStatus bool) {
+func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showInfoFlags bool) {
 	var keys []string
 	for key := range groupedTodos.Groups {
 		keys = append(keys, key)
@@ -38,15 +38,15 @@ func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool,
 	for _, key := range keys {
 		tabby.AddLine(key)
 		for _, todo := range groupedTodos.Groups[key] {
-			f.printTodo(tabby, todo, printNotes, showStatus)
+			f.printTodo(tabby, todo, printNotes, showInfoFlags)
 		}
 		tabby.AddLine()
 	}
 	tabby.Print()
 }
 
-func (f *SimpleScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showStatus bool) {
-	if showStatus {
+func (f *SimpleScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showInfoFlags bool) {
+	if showInfoFlags {
 		tabby.AddLine(
 			f.formatID(todo.ID, todo.IsPriority),
 			f.formatCompleted(todo.Completed),
@@ -98,23 +98,25 @@ func (f *SimpleScreenPrinter) formatDue(due string, isPriority bool, completed b
 }
 
 func (f *SimpleScreenPrinter) formatInformation(todo *Todo) string {
-	var information []string
+
+	var infoFlags []string
 	if todo.IsPriority {
-		information = append(information, "P")
+		infoFlags = append(infoFlags, "P")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
 	if todo.HasNotes() {
-		information = append(information, "N")
+		infoFlags = append(infoFlags, "N")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
 	if todo.Archived {
-		information = append(information, "A")
+		infoFlags = append(infoFlags, "A")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
-	return strings.Join(information, "")
+
+	return strings.Join(infoFlags, "")
 }
 
 func (f *SimpleScreenPrinter) printDue(due time.Time, completed bool) string {

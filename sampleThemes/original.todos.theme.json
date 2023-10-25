@@ -1,0 +1,177 @@
+{
+    "Columns":
+    [
+        {
+            "desc": "Task ID",
+            "columnname": "id",
+            "index":0
+        },
+        {
+            "desc": "Completed column",
+            "columnname": "completed",
+            "index":1
+        },
+        {
+            "desc": "Information - Priority, Note and Archived flags",
+            "columnname": "information",
+            "index":2
+        },
+        {
+            "desc": "Task Due date",
+            "columnname": "due",
+            "index":3
+        },
+        {
+            "desc": "Task status",
+            "columnname": "status",
+            "index":4
+        },
+        {
+            "desc": "Task subject",
+            "columnname": "subject",
+            "index":5
+        }
+    ],
+
+    "Colors":
+    [
+        {   
+            "desc": "Color of group names when group: is specified",
+            "name": "groupTitleColor",
+            "color": "cyan",
+            "bold": false
+        },
+        {
+            "desc":"Color of note id's when --notes is used",
+            "name": "noteIDColor",
+            "color": "white",
+            "bold": false
+        },
+        {
+            "desc":"Color of note contents when --notes is used",
+            "name": "noteTextColor",
+            "color": "white",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task id",
+            "name": "taskIDColor",
+            "color": "yellow",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task id if the task is prioritized",
+            "name": "taskIDPriColor",
+            "color": "yellow",
+            "bold": true
+        },
+        {
+            "desc":"Color of completed indicator ([ ] or [X])",
+            "name": "completedColor",
+            "color": "white",
+            "bold": false
+        },
+        {
+            "desc":"Color of task status",
+            "name": "statusColor",
+            "color": "green",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task status if task is prioritized",
+            "name": "statusPriColor",
+            "color": "green",
+            "bold": true
+        },
+        {
+            "desc":"Color of area indicating Priority, Note and Archived",
+            "name": "informationColor",
+            "color": "white",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task due today",
+            "name": "todayColor",
+            "color": "green",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task due today if that task is prioritized",
+            "name": "todayPriColor",
+            "color": "green",
+            "bold": true
+        },
+        {
+            "desc":"Color of a task due tomorrow",
+            "name": "tomorrowColor",
+            "color": "yellow",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task due tomorrow if that task is prioritized",
+            "name": "tomorrowPriColor",
+            "color": "yellow",
+            "bold": true
+        },
+        {
+            "desc":"Color of a task that is overdue",
+            "name": "overdueColor",
+            "color": "red",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task that is overdue if that task is prioritized",
+            "name": "overduePriColor",
+            "color": "red",
+            "bold": true
+        },
+        {
+            "desc":"Color of a task that is not today, tomorrow or overdue",
+            "name": "otherDue",
+            "color": "cyan",
+            "bold": false
+        },
+        {
+            "desc":"Color of a task that is not today, tomorrow or overdue if the task is prioritized",
+            "name": "otherDuePriColor",
+            "color": "cyan",
+            "bold": true
+        },
+        {
+            "desc":"Color of task text",
+            "name": "taskTextColor",
+            "color": "white",
+            "bold": false
+        },
+        {
+            "desc":"Color of project names in task text",
+            "name": "taskTextProjectWordColor",
+            "color": "magents",
+            "bold": false
+        },
+        {
+            "desc":"Color of tags in task text",
+            "name": "taskTextTagWordColor",
+            "color": "green",
+            "bold": false
+        },
+        {
+            "desc":"Color of task text if the task is prioritized",
+            "name": "taskTextPriColor",
+            "color": "white",
+            "bold": true
+        },
+        {
+            "desc":"Color of project names in task text if that task is prioritized",
+            "name": "taskTextProjectPriWordColor",
+            "color": "white",
+            "bold": true
+        },
+        {
+            "desc":"Color of tags in task text if that task is prioritized",
+            "name": "taskTextTagWordPriColor",
+            "color": "green",
+            "bold": true
+        }
+    ]
+}

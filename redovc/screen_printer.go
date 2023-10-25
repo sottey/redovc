@@ -12,23 +12,6 @@ import (
 	"github.com/fatih/color"
 )
 
-var (
-	//blue        = color.New(0, color.FgBlue)
-	//blueBold    = color.New(color.Bold, color.FgBlue)
-	green       = color.New(0, color.FgGreen)
-	greenBold   = color.New(color.Bold, color.FgGreen)
-	cyan        = color.New(0, color.FgCyan)
-	cyanBold    = color.New(color.Bold, color.FgCyan)
-	magenta     = color.New(0, color.FgMagenta)
-	magentaBold = color.New(color.Bold, color.FgMagenta)
-	red         = color.New(0, color.FgRed)
-	redBold     = color.New(color.Bold, color.FgRed)
-	white       = color.New(0, color.FgWhite)
-	whiteBold   = color.New(color.Bold, color.FgWhite)
-	yellow      = color.New(0, color.FgYellow)
-	yellowBold  = color.New(color.Bold, color.FgYellow)
-)
-
 // ScreenPrinter is the default struct of this file
 type ScreenPrinter struct {
 	Writer         *io.Writer
@@ -43,32 +26,34 @@ func NewScreenPrinter(unicodeSupport bool) *ScreenPrinter {
 }
 
 // Print prints the output of redovc to the terminal screen.
-func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showStatus bool) {
+func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showInfoFlags bool) {
 	var keys []string
 	for key := range groupedTodos.Groups {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 
+	LoadTheme()
+
 	tabby := tabby.NewCustom(tabwriter.NewWriter(color.Output, 0, 0, 2, ' ', 0))
 	tabby.AddLine()
 	for _, key := range keys {
 		var title = key + " (" + strconv.Itoa(len(groupedTodos.Groups[key])) + ")"
-		tabby.AddLine(cyan.Sprint(title))
+		tabby.AddLine(groupTitleColor.Sprint(title))
 		for _, todo := range groupedTodos.Groups[key] {
-			f.printTodo(tabby, todo, printNotes, showStatus)
+			f.printTodo(tabby, todo, printNotes, showInfoFlags)
 		}
 		tabby.AddLine()
 	}
 	tabby.Print()
 }
 
-func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showStatus bool) {
-	if showStatus {
+func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showInfoFlags bool) {
+	if showInfoFlags {
 		tabby.AddLine(
 			f.formatID(todo.ID, todo.IsPriority),
 			f.formatCompleted(todo.Completed),
-			f.formatInformation(todo),
+			f.formatInfoFlags(todo),
 			f.formatDue(todo.Due, todo.IsPriority, todo.Completed),
 			f.formatStatus(todo.Status, todo.IsPriority),
 			f.formatSubject(todo.Subject, todo.IsPriority))
@@ -84,36 +69,36 @@ func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes boo
 	if printNotes {
 		for nid, note := range todo.Notes {
 			tabby.AddLine(
-				"  "+cyan.Sprint(strconv.Itoa(nid)),
-				white.Sprint(""),
-				white.Sprint(""),
-				white.Sprint(""),
-				white.Sprint(""),
-				white.Sprint(note))
+				"  "+noteIDColor.Sprint(strconv.Itoa(nid)),
+				noteTextColor.Sprint(""),
+				noteTextColor.Sprint(""),
+				noteTextColor.Sprint(""),
+				noteTextColor.Sprint(""),
+				noteTextColor.Sprint(note))
 		}
 	}
 }
 
 func (f *ScreenPrinter) formatID(ID int, isPriority bool) string {
 	if isPriority {
-		return yellowBold.Sprint(strconv.Itoa(ID))
+		return taskIDPriColor.Sprint(strconv.Itoa(ID))
 	}
-	return yellow.Sprint(strconv.Itoa(ID))
+	return taskIDColor.Sprint(strconv.Itoa(ID))
 }
 
 func (f *ScreenPrinter) formatCompleted(completed bool) string {
 	if completed {
 		if f.UnicodeSupport {
-			return white.Sprint("[✔]")
+			return completedColor.Sprint("[✔]")
 		}
-		return white.Sprint("[x]")
+		return completedColor.Sprint("[x]")
 	}
-	return white.Sprint("[ ]")
+	return completedColor.Sprint("[ ]")
 }
 
 func (f *ScreenPrinter) formatDue(due string, isPriority bool, completed bool) string {
 	if due == "" {
-		return white.Sprint("          ")
+		return whiteFg.Sprint("          ")
 	}
 	dueTime, _ := time.Parse(DATE_FORMAT, due)
 
@@ -125,7 +110,7 @@ func (f *ScreenPrinter) formatDue(due string, isPriority bool, completed bool) s
 
 func (f *ScreenPrinter) formatStatus(status string, isPriority bool) string {
 	if status == "" {
-		return green.Sprint("          ")
+		return statusColor.Sprint("          ")
 	}
 
 	if len(status) < 10 {
@@ -137,53 +122,53 @@ func (f *ScreenPrinter) formatStatus(status string, isPriority bool) string {
 	statusRune := []rune(status)
 
 	if isPriority {
-		return greenBold.Sprintf("%-10v", string(statusRune[0:10]))
+		return statusPriColor.Sprintf("%-10v", string(statusRune[0:10]))
 	}
-	return green.Sprintf("%-10s", string(statusRune[0:10]))
+	return statusColor.Sprintf("%-10s", string(statusRune[0:10]))
 }
 
-func (f *ScreenPrinter) formatInformation(todo *Todo) string {
-	var information []string
+func (f *ScreenPrinter) formatInfoFlags(todo *Todo) string {
+	var infoFlags []string
 	if todo.IsPriority {
-		information = append(information, "P")
+		infoFlags = append(infoFlags, "P")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
 	if todo.HasNotes() {
-		information = append(information, "N")
+		infoFlags = append(infoFlags, "N")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
 	if todo.Archived {
-		information = append(information, "A")
+		infoFlags = append(infoFlags, "A")
 	} else {
-		information = append(information, "-")
+		infoFlags = append(infoFlags, "-")
 	}
 
-	return white.Sprint(strings.Join(information, ""))
+	return informationColor.Sprint(strings.Join(infoFlags, ""))
 }
 
 func (f *ScreenPrinter) printDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return green.Sprint("today     ")
+		return todayColor.Sprint("today     ")
 	} else if isTomorrow(due) {
-		return yellow.Sprint("tomorrow  ")
+		return tomorrowColor.Sprint("tomorrow  ")
 	} else if isPastDue(due) && !completed {
-		return red.Sprint(due.Format("Mon Jan 02"))
+		return overdueColor.Sprint(due.Format("Mon Jan 02"))
 	}
 
-	return cyan.Sprint(due.Format("Mon Jan 02"))
+	return otherDue.Sprint(due.Format("Mon Jan 02"))
 }
 
 func (f *ScreenPrinter) printPriorityDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return greenBold.Sprint("today     ")
+		return todayPriColor.Sprint("today     ")
 	} else if isTomorrow(due) {
-		return yellowBold.Sprint("tomorrow  ")
+		return tomorrowPriColor.Sprint("tomorrow  ")
 	} else if isPastDue(due) && !completed {
-		return redBold.Sprint(due.Format("Mon Jan 02"))
+		return overduePriColor.Sprint(due.Format("Mon Jan 02"))
 	}
-	return cyanBold.Sprint(due.Format("Mon Jan 02"))
+	return otherDuePriColor.Sprint(due.Format("Mon Jan 02"))
 }
 
 func (f *ScreenPrinter) formatSubject(subject string, isPriority bool) string {
@@ -199,11 +184,11 @@ func (f *ScreenPrinter) printPrioritySubject(splitted []string) string {
 	coloredWords := []string{}
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
-			coloredWords = append(coloredWords, magentaBold.Sprint(word))
+			coloredWords = append(coloredWords, taskTextProjectPriWordColor.Sprint(word))
 		} else if tagRegex.MatchString(word) {
-			coloredWords = append(coloredWords, redBold.Sprint(word))
+			coloredWords = append(coloredWords, taskTextTagWordPriColor.Sprint(word))
 		} else {
-			coloredWords = append(coloredWords, whiteBold.Sprint(word))
+			coloredWords = append(coloredWords, taskTextPriColor.Sprint(word))
 		}
 	}
 	return strings.Join(coloredWords, " ")
@@ -213,11 +198,11 @@ func (f *ScreenPrinter) printSubject(splitted []string) string {
 	coloredWords := []string{}
 	for _, word := range splitted {
 		if projectRegex.MatchString(word) {
-			coloredWords = append(coloredWords, magenta.Sprint(word))
+			coloredWords = append(coloredWords, taskTextProjectWordColor.Sprint(word))
 		} else if tagRegex.MatchString(word) {
-			coloredWords = append(coloredWords, green.Sprint(word))
+			coloredWords = append(coloredWords, taskTextTagWordColor.Sprint(word))
 		} else {
-			coloredWords = append(coloredWords, white.Sprint(word))
+			coloredWords = append(coloredWords, taskTextColor.Sprint(word))
 		}
 	}
 	return strings.Join(coloredWords, " ")

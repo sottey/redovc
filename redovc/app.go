@@ -87,7 +87,7 @@ func (a *App) DeleteTodo(input string) {
 		return
 	}
 
-	// Get the todos so we an display info after deletion
+	// Get the todos so we can display info after deletion
 	deletedTodos := a.TodoList.FindByIDs(ids)
 
 	if len(deletedTodos) == 0 {
@@ -291,7 +291,7 @@ func (a *App) ArchiveCompleted() {
 }
 
 // ListTodos will list all todos.
-func (a *App) ListTodos(input string, showNotes bool, showStatus bool) {
+func (a *App) ListTodos(input string, showNotes bool, showInfoFlags bool) {
 	a.load()
 
 	parser := &InputParser{}
@@ -305,7 +305,7 @@ func (a *App) ListTodos(input string, showNotes bool, showStatus bool) {
 	todoFilter := &TodoFilter{Todos: a.TodoList.Todos(), Filter: filter}
 	grouped := a.getGroups(input, todoFilter.ApplyFilter())
 
-	a.Printer.Print(grouped, showNotes, showStatus)
+	a.Printer.Print(grouped, showNotes, showInfoFlags)
 }
 
 // PrioritizeTodo will prioritize a todo.

@@ -126,6 +126,8 @@ sow - Start of week (next Monday)
 soww - Start of workweek (next Monday)
 soy - Start Of year (next jan1)
 [specific date] - Examples: oct11, 15jan, may30</code></p>
+<h4 id="show-infomation-flags-priority-note-archived-flags">Show Infomation flags (Priority, Note, Archived flags)</h4>
+<p><code>redovc list --showinfo</code> or <code>redovc list --showinfo=true</code></p>
 <h5 id="list-all-todos-due-today">List all todos due today:</h5>
 <p><code>redovc list due:tod</code></p>
 <h5 id="lists-all-todos-due-tomorrow">Lists all todos due tomorrow:</h5>
@@ -188,7 +190,7 @@ soy - Start Of year (next jan1)
 <h5 id="lists-all-todos-due-tomorrow-concerning-frank-for-project-grouped-by-project">Lists all todos due tomorrow concerning #frank for +project, grouped by project:</h5>
 <p><code>redovc list tag:frank group:p due:tom</code></p>
 <h5 id="indicator-flags">Indicator flags</h5>
-<p>If you pass --status=true as a flag, you'll see an extra column when listing todos.</p>
+<p>If you pass --showinfo or --showinfo=true as a flag, you'll see an extra column when listing todos.</p>
 <h6 id="p-todo-is-prioritized">P = Todo is prioritized</h6>
 <h6 id="n-todo-has-notes-attached">N = Todo has notes attached</h6>
 <h6 id="a-todo-is-archived">A = Todo is archived</h6>
@@ -196,7 +198,7 @@ soy - Start Of year (next jan1)
 <p><code>--color     Allows color in redovc output (default: true) (default true)</code></p>
 <p><code>-h, --help  Help for list</code></p>
 <p><code>--notes     Show a todo's notes when listing. (default: false)</code></p>
-<p><code>--status    Show a todo's status (default: false)</code></p>
+<p><code>--showinfo  Show a todo's flags (Priority, Note and Archived status) (default: false)</code></p>
 <p><code>--unicode   Allows unicode support in redovc output (default: true) (default true)</code></p></div>
             </div>
         </div>
