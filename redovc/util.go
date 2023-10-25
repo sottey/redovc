@@ -132,3 +132,20 @@ func JSONtoCSV(jsonData []byte) {
 	//Following line prints CSV
 	fmt.Println(got)
 }
+
+func RemoveFromStringArray(array []string, indexToDelete int) []string {
+	// check if the index is within array bounds
+	if indexToDelete < 0 || indexToDelete >= len(array) {
+		return array
+	} else {
+		// delete an element from the array
+		newLength := 0
+		for index := range array {
+			if indexToDelete != index {
+				array[newLength] = array[index]
+				newLength++
+			}
+		}
+		return array[:newLength]
+	}
+}

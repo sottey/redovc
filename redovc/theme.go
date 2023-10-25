@@ -12,9 +12,9 @@ import (
 
 type Theme struct {
 	Columns []struct {
-		Desc    string `json:"desc"`
-		Nameame string `json:"columnname"`
-		Index   int    `json:"index"`
+		Desc  string `json:"desc"`
+		Name  string `json:"columnname"`
+		Index int    `json:"index"`
 	} `json:"Columns"`
 	Colors []struct {
 		Desc  string `json:"desc"`
@@ -235,6 +235,42 @@ func StringToColor(colorString string, bold bool) *color.Color {
 			return whiteBoldFg
 		}
 	}
+}
+
+func OrderColumns(showInfoFlags bool, id string, completed string, info string, due string, status string, subject string) []string {
+	statusIndex := -1
+	columnList := []string{"", "", "", "", "", ""}
+	theme, err := GetTheme()
+	if err != nil {
+		fmt.Printf("Theme file found but could not load: %v\n", err)
+	}
+
+	for _, column := range theme.Columns {
+		colName := column.Name
+		index := column.Index
+
+		switch colName {
+		case "id":
+			columnList[index] = id
+		case "completed":
+			columnList[index] = completed
+		case "information":
+			columnList[index] = info
+		case "due":
+			columnList[index] = due
+		case "status":
+			statusIndex = index
+			columnList[index] = status
+		case "subject":
+			columnList[index] = subject
+		}
+	}
+
+	if !showInfoFlags {
+		RemoveFromStringArray(columnList, statusIndex)
+	}
+
+	return columnList
 }
 
 const themeTemplate = `

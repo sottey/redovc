@@ -1,6 +1,7 @@
 package redovc
 
 import (
+	"fmt"
 	"io"
 	"sort"
 	"strconv"
@@ -17,6 +18,14 @@ type ScreenPrinter struct {
 	Writer         *io.Writer
 	UnicodeSupport bool
 }
+
+const (
+	idColumnWidth        = "%-4s"
+	completedColumnWidth = "%-3s"
+	infoColumnWidth      = "%-3s"
+	dueColumnWidth       = "%-10s"
+	statusColumnWidth    = "%-10s"
+)
 
 // NewScreenPrinter creates a new screeen printer.
 func NewScreenPrinter(unicodeSupport bool) *ScreenPrinter {
@@ -49,41 +58,41 @@ func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showI
 }
 
 func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showInfoFlags bool) {
+	id := fmt.Sprintf(idColumnWidth, f.formatID(todo.ID, todo.IsPriority))
+	completed := fmt.Sprintf(completedColumnWidth, f.formatCompleted(todo.Completed))
+	info := fmt.Sprintf(infoColumnWidth, f.formatInfoFlags(todo))
+	due := fmt.Sprintf(dueColumnWidth, f.formatDue(todo.Due, todo.IsPriority, todo.Completed))
+	status := fmt.Sprintf(statusColumnWidth, f.formatStatus(todo.Status, todo.IsPriority))
+	subject := f.formatSubject(todo.Subject, todo.IsPriority)
+
+	columns := OrderColumns(showInfoFlags, id, completed, info, due, status, subject)
+
 	if showInfoFlags {
-		tabby.AddLine(
-			f.formatID(todo.ID, todo.IsPriority),
-			f.formatCompleted(todo.Completed),
-			f.formatInfoFlags(todo),
-			f.formatDue(todo.Due, todo.IsPriority, todo.Completed),
-			f.formatStatus(todo.Status, todo.IsPriority),
-			f.formatSubject(todo.Subject, todo.IsPriority))
+		tabby.AddLine(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5])
 	} else {
-		tabby.AddLine(
-			f.formatID(todo.ID, todo.IsPriority),
-			f.formatCompleted(todo.Completed),
-			f.formatDue(todo.Due, todo.IsPriority, todo.Completed),
-			f.formatStatus(todo.Status, todo.IsPriority),
-			f.formatSubject(todo.Subject, todo.IsPriority))
+		tabby.AddLine(columns[0], columns[1], columns[2], columns[3], columns[4])
 	}
 
 	if printNotes {
 		for nid, note := range todo.Notes {
 			tabby.AddLine(
-				"  "+noteIDColor.Sprint(strconv.Itoa(nid)),
-				noteTextColor.Sprint(""),
-				noteTextColor.Sprint(""),
-				noteTextColor.Sprint(""),
-				noteTextColor.Sprint(""),
-				noteTextColor.Sprint(note))
+				"    "+noteIDColor.Sprint(strconv.Itoa(nid)),
+				noteTextColor.Sprintf(idColumnWidth, ""),
+				noteTextColor.Sprintf(completedColumnWidth, ""),
+				noteTextColor.Sprintf(infoColumnWidth, ""),
+				noteTextColor.Sprintf(dueColumnWidth, ""),
+				noteTextColor.Sprintf(statusColumnWidth, ""),
+				noteTextColor.Sprintf(""),
+				noteTextColor.Sprint("- "+note))
 		}
 	}
 }
 
 func (f *ScreenPrinter) formatID(ID int, isPriority bool) string {
 	if isPriority {
-		return taskIDPriColor.Sprint(strconv.Itoa(ID))
+		return taskIDPriColor.Sprintf(strconv.Itoa(ID))
 	}
-	return taskIDColor.Sprint(strconv.Itoa(ID))
+	return taskIDColor.Sprintf(strconv.Itoa(ID))
 }
 
 func (f *ScreenPrinter) formatCompleted(completed bool) string {
@@ -98,7 +107,7 @@ func (f *ScreenPrinter) formatCompleted(completed bool) string {
 
 func (f *ScreenPrinter) formatDue(due string, isPriority bool, completed bool) string {
 	if due == "" {
-		return whiteFg.Sprint("          ")
+		return whiteFg.Sprintf("")
 	}
 	dueTime, _ := time.Parse(DATE_FORMAT, due)
 
@@ -110,21 +119,15 @@ func (f *ScreenPrinter) formatDue(due string, isPriority bool, completed bool) s
 
 func (f *ScreenPrinter) formatStatus(status string, isPriority bool) string {
 	if status == "" {
-		return statusColor.Sprint("          ")
+		return statusColor.Sprintf("")
 	}
 
-	if len(status) < 10 {
-		for x := len(status); x <= 10; x++ {
-			status += " "
-		}
-	}
-
-	statusRune := []rune(status)
+	//statusRune := []rune(status)
 
 	if isPriority {
-		return statusPriColor.Sprintf("%-10v", string(statusRune[0:10]))
+		return statusPriColor.Sprintf(status) //string(statusRune[0:10]))
 	}
-	return statusColor.Sprintf("%-10s", string(statusRune[0:10]))
+	return statusColor.Sprintf(status) //string(statusRune[0:10]))
 }
 
 func (f *ScreenPrinter) formatInfoFlags(todo *Todo) string {
@@ -150,25 +153,25 @@ func (f *ScreenPrinter) formatInfoFlags(todo *Todo) string {
 
 func (f *ScreenPrinter) printDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return todayColor.Sprint("today     ")
+		return todayColor.Sprintf("today")
 	} else if isTomorrow(due) {
-		return tomorrowColor.Sprint("tomorrow  ")
+		return tomorrowColor.Sprintf("tomorrow")
 	} else if isPastDue(due) && !completed {
-		return overdueColor.Sprint(due.Format("Mon Jan 02"))
+		return overdueColor.Sprintf(due.Format("Mon Jan 02"))
 	}
 
-	return otherDue.Sprint(due.Format("Mon Jan 02"))
+	return otherDue.Sprintf(due.Format("Mon Jan 02"))
 }
 
 func (f *ScreenPrinter) printPriorityDue(due time.Time, completed bool) string {
 	if isToday(due) {
-		return todayPriColor.Sprint("today     ")
+		return todayPriColor.Sprintf("today")
 	} else if isTomorrow(due) {
-		return tomorrowPriColor.Sprint("tomorrow  ")
+		return tomorrowPriColor.Sprintf("tomorrow")
 	} else if isPastDue(due) && !completed {
-		return overduePriColor.Sprint(due.Format("Mon Jan 02"))
+		return overduePriColor.Sprintf(due.Format("Mon Jan 02"))
 	}
-	return otherDuePriColor.Sprint(due.Format("Mon Jan 02"))
+	return otherDuePriColor.Sprintf(due.Format("Mon Jan 02"))
 }
 
 func (f *ScreenPrinter) formatSubject(subject string, isPriority bool) string {
