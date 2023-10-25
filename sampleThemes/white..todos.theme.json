@@ -1,38 +1,4 @@
 {
-    "Columns":
-    [
-        {
-            "desc": "Task ID",
-            "columnname": "id",
-            "index":0
-        },
-        {
-            "desc": "Completed column",
-            "columnname": "completed",
-            "index":1
-        },
-        {
-            "desc": "Information - Priority, Note and Archived flags",
-            "columnname": "information",
-            "index":2
-        },
-        {
-            "desc": "Task Due date",
-            "columnname": "due",
-            "index":3
-        },
-        {
-            "desc": "Task status",
-            "columnname": "status",
-            "index":4
-        },
-        {
-            "desc": "Task subject",
-            "columnname": "subject",
-            "index":5
-        }
-    ],
-
     "Colors":
     [
         {   
@@ -172,6 +138,39 @@
             "name": "taskTextTagWordPriColor",
             "color": "white",
             "bold": true
+        }
+    ],
+    "Columns":
+    [
+        {
+            "desc": "Task ID",
+            "columnname": "id",
+            "index":0
+        },
+        {
+            "desc": "Completed column",
+            "columnname": "completed",
+            "index":1
+        },
+        {
+            "desc": "Information - Priority, Note and Archived flags",
+            "columnname": "information",
+            "index":2
+        },
+        {
+            "desc": "Task Due date",
+            "columnname": "due",
+            "index":3
+        },
+        {
+            "desc": "Task status",
+            "columnname": "status",
+            "index":4
+        },
+        {
+            "desc": "Task subject",
+            "columnname": "subject",
+            "index":5
         }
     ]
 }
