@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://redo.vc/theming/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Theming - redo.vc</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">redo.vc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../usage/" class="nav-link">Usage</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Theming</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="https://github.com/sottey/redo.vc" class="nav-link">On GitHub</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../usage/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#theming" class="nav-link">Theming</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#themes" class="nav-link">Themes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#theme-file" class="nav-link">Theme file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#theme-file-color-structure" class="nav-link">Theme file color structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#theme-file-column-ordering-structure-not-yet-implemented" class="nav-link">Theme File Column Ordering Structure (not yet implemented):</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="theming">Theming</h1>
+<h2 id="themes">Themes</h2>
+<p>Command shells have very limited color abilities, but I decided it would be good to not impose my color scheme on everyone who uses redovc.... So, theming.</p>
+<h2 id="theme-file">Theme file</h2>
+<p>A theme file can live in your home directory and it will be used as the default. You can also have theme files in other directories and when you are in that directory, that theme will be used.</p>
+<p>The theme file must be named .todos.theme.json and the contents are used to describe how different sections of the redovc list command presents data.</p>
+<h2 id="theme-file-color-structure">Theme file color structure</h2>
+<p>You can find sample theme files in the <a href="https://github.com/sottey/redo.vc/tree/main/sampleThemes">sampleThemes</a> directory of the source code.</p>
+<p>For each section, there are a number of properties:</p>
+<ul>
+<li>Desc - Color of group names when group: is specified</li>
+<li>Name - Name of section. These are used by the code and must be one of:<ul>
+<li>groupTitleColor - Color of group names when group: is specified</li>
+<li>noteIDColor - Color of note id's when --notes is used</li>
+<li>noteTextColor - Color of note contents when --notes is used</li>
+<li>taskIDColor - Color of a task id</li>
+<li>taskIDPriColor - Color of a task id if the task is prioritized</li>
+<li>completedColor - Color of completed indicator ([ ] or [X])</li>
+<li>statusColor - Color of task status</li>
+<li>statusPriColor - Color of a task status if task is prioritized</li>
+<li>informationColor - Color of area indicating Priority, Note and Archived</li>
+<li>todayColor - Color of a task due today</li>
+<li>todayPriColor - Color of a task due today if that task is prioritized</li>
+<li>tomorrowColor - Color of a task due tomorrow</li>
+<li>tomorrowPriColor - Color of a task due tomorrow if that task is prioritized</li>
+<li>overdueColor - Color of a task that is overdue</li>
+<li>overduePriColor - Color of a task that is overdue if that task is prioritized</li>
+<li>otherDue - Color of a task that is not today, tomorrow or overdue</li>
+<li>otherDuePriColor - Color of a task that is not today, tomorrow or overdue if the task is prioritized</li>
+<li>taskTextColor - Color of task text</li>
+<li>taskTextProjectWordColor - Color of project names in task text</li>
+<li>taskTextTagWordColor - Color of tags in task text</li>
+<li>taskTextPriColor - Color of task text if the task is prioritized</li>
+<li>taskTextProjectPriWordColor - Color of project names in task text if that task is prioritized</li>
+<li>taskTextTagWordPriColor - Color of tags in task text if that task is prioritized</li>
+</ul>
+</li>
+<li>Color - The color to be used. Valid colors are:<ul>
+<li>black</li>
+<li>red</li>
+<li>green</li>
+<li>yellow</li>
+<li>blue</li>
+<li>magenta</li>
+<li>cyan</li>
+<li>white</li>
+</ul>
+</li>
+<li>Bold = true or false</li>
+</ul>
+<h2 id="theme-file-column-ordering-structure-not-yet-implemented">Theme File Column Ordering Structure (not yet implemented):</h2>
+<p>I am working on people being able to specify what order the columns are displayed when using 'redovc list'. These will be contained in the theme file as well.</p>
+<p>Currently, the json looks like this:</p>
+<pre><code>    &quot;Columns&quot;:
+    [
+        {
+            &quot;desc&quot;: &quot;Task ID&quot;,
+            &quot;columnname&quot;: &quot;id&quot;,
+            &quot;index&quot;:0
+        },
+        {
+            &quot;desc&quot;: &quot;Completed column&quot;,
+            &quot;columnname&quot;: &quot;completed&quot;,
+            &quot;index&quot;:1
+        },
+        {
+            &quot;desc&quot;: &quot;Information - Priority, Note and Archived flags&quot;,
+            &quot;columnname&quot;: &quot;information&quot;,
+            &quot;index&quot;:2
+        },
+        {
+            &quot;desc&quot;: &quot;Task Due date&quot;,
+            &quot;columnname&quot;: &quot;due&quot;,
+            &quot;index&quot;:3
+        },
+        {
+            &quot;desc&quot;: &quot;Task status&quot;,
+            &quot;columnname&quot;: &quot;status&quot;,
+            &quot;index&quot;:4
+        },
+        {
+            &quot;desc&quot;: &quot;Task subject&quot;,
+            &quot;columnname&quot;: &quot;subject&quot;,
+            &quot;index&quot;:5
+        }
+    ],
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

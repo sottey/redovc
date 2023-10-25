@@ -4,5 +4,6 @@ site_url: https://redo.vc/
 nav:
   - Home: index.md
   - Usage: usage.md
+  - Theming: theming.md
   - On GitHub: https://github.com/sottey/redo.vc
 
