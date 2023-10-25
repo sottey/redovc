@@ -6,7 +6,7 @@ Redo.vc is a tool for command line fans that allows you to track your tasks. It 
 To learn about available redo.vc commands, see the [usage page](https://redo.vc/usage/)
 
 ## Features
-* [NEW] [Theming capabilities](https://redo.vc/theming)
+* [NEW] [Theming capabilities](https://redo.vc/theming) - Change all the colors and column order on the fly!
 * [NEW] Adding additional due strings (End of quarter, End of Month)
 * Tasks can be assigned to a project
 * Projects can be created dynamically while creating todos

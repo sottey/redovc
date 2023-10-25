@@ -82,7 +82,7 @@ Currently, the json looks like this:
             "index":4
         },
         {
-            "desc": "Task subject",
+            "desc": "Task subject - Changing this index to anything other than 5 will probably make everything look wonky.",
             "columnname": "subject",
             "index":5
         }
