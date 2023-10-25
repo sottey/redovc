@@ -49,8 +49,8 @@ For each section, there are a number of properties:
 	- white
 - Bold = true or false
 
-## Theme File Column Ordering Structure (not yet implemented):
-I am working on people being able to specify what order the columns are displayed when using 'redovc list'. These will be contained in the theme file as well.
+## Theme File Column Ordering Structure:
+You can now specify what order the columns are displayed when using 'redovc list'. These are contained in the theme file as well. NOTE: Changing the position of the Task subject can make things look really messy. Not recommended
 
 Currently, the json looks like this:
 ```

@@ -12,7 +12,7 @@ func init() {
 		unicodeSupport bool
 		colorSupport   bool
 		listNotes      bool
-		showInfoFlags  bool
+		showStatus     bool
 		listCmdDesc    = "List todos."
 		listCmdExample = `
   Filtering by date:
@@ -144,7 +144,7 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 		Long:    listCmdLongDesc,
 		Short:   listCmdDesc,
 		Run: func(cmd *cobra.Command, args []string) {
-			redovc.NewAppWithPrintOptions(unicodeSupport, colorSupport).ListTodos(strings.Join(args, " "), listNotes, showInfoFlags)
+			redovc.NewAppWithPrintOptions(unicodeSupport, colorSupport).ListTodos(strings.Join(args, " "), listNotes, showStatus)
 		},
 	}
 
@@ -152,5 +152,5 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. (default: false)")
-	listCmd.Flags().BoolVarP(&showInfoFlags, "showinfo", "", false, "Show a todo's information flags (Priority, Note and Archived)")
+	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status")
 }

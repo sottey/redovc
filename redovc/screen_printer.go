@@ -35,7 +35,7 @@ func NewScreenPrinter(unicodeSupport bool) *ScreenPrinter {
 }
 
 // Print prints the output of redovc to the terminal screen.
-func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showInfoFlags bool) {
+func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showStatus bool) {
 	var keys []string
 	for key := range groupedTodos.Groups {
 		keys = append(keys, key)
@@ -50,14 +50,14 @@ func (f *ScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showI
 		var title = key + " (" + strconv.Itoa(len(groupedTodos.Groups[key])) + ")"
 		tabby.AddLine(groupTitleColor.Sprint(title))
 		for _, todo := range groupedTodos.Groups[key] {
-			f.printTodo(tabby, todo, printNotes, showInfoFlags)
+			f.printTodo(tabby, todo, printNotes, showStatus)
 		}
 		tabby.AddLine()
 	}
 	tabby.Print()
 }
 
-func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showInfoFlags bool) {
+func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showStatus bool) {
 	id := fmt.Sprintf(idColumnWidth, f.formatID(todo.ID, todo.IsPriority))
 	completed := fmt.Sprintf(completedColumnWidth, f.formatCompleted(todo.Completed))
 	info := fmt.Sprintf(infoColumnWidth, f.formatInfoFlags(todo))
@@ -65,9 +65,9 @@ func (f *ScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes boo
 	status := fmt.Sprintf(statusColumnWidth, f.formatStatus(todo.Status, todo.IsPriority))
 	subject := f.formatSubject(todo.Subject, todo.IsPriority)
 
-	columns := OrderColumns(showInfoFlags, id, completed, info, due, status, subject)
+	columns := OrderColumns(showStatus, id, completed, info, due, status, subject)
 
-	if showInfoFlags {
+	if showStatus {
 		tabby.AddLine(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5])
 	} else {
 		tabby.AddLine(columns[0], columns[1], columns[2], columns[3], columns[4])

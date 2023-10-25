@@ -26,7 +26,7 @@ func NewSimpleScreenPrinter(unicodeSupport bool) *SimpleScreenPrinter {
 }
 
 // Print prints the output of redovc to the terminal screen.
-func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showInfoFlags bool) {
+func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool, showStatus bool) {
 	var keys []string
 	for key := range groupedTodos.Groups {
 		keys = append(keys, key)
@@ -38,15 +38,15 @@ func (f *SimpleScreenPrinter) Print(groupedTodos *GroupedTodos, printNotes bool,
 	for _, key := range keys {
 		tabby.AddLine(key)
 		for _, todo := range groupedTodos.Groups[key] {
-			f.printTodo(tabby, todo, printNotes, showInfoFlags)
+			f.printTodo(tabby, todo, printNotes, showStatus)
 		}
 		tabby.AddLine()
 	}
 	tabby.Print()
 }
 
-func (f *SimpleScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showInfoFlags bool) {
-	if showInfoFlags {
+func (f *SimpleScreenPrinter) printTodo(tabby *tabby.Tabby, todo *Todo, printNotes bool, showStatus bool) {
+	if showStatus {
 		tabby.AddLine(
 			f.formatID(todo.ID, todo.IsPriority),
 			f.formatCompleted(todo.Completed),

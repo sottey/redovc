@@ -26,22 +26,38 @@ type Theme struct {
 
 // Color Objects
 var (
-	blueFg        = color.New(0, color.FgBlue)
-	blueBoldFg    = color.New(color.Bold, color.FgBlue)
-	greenFg       = color.New(0, color.FgGreen)
-	greenBoldFg   = color.New(color.Bold, color.FgGreen)
-	cyanFg        = color.New(0, color.FgCyan)
-	cyanBoldFg    = color.New(color.Bold, color.FgCyan)
-	magentaFg     = color.New(0, color.FgMagenta)
-	magentaBoldFg = color.New(color.Bold, color.FgMagenta)
-	redFg         = color.New(0, color.FgRed)
-	redBoldFg     = color.New(color.Bold, color.FgRed)
-	whiteFg       = color.New(0, color.FgWhite)
-	whiteBoldFg   = color.New(color.Bold, color.FgWhite)
-	yellowFg      = color.New(0, color.FgYellow)
-	yellowBoldFg  = color.New(color.Bold, color.FgYellow)
-	blackFg       = color.New(0, color.FgBlack)
-	blackBoldFg   = color.New(color.Bold, color.FgBlack)
+	blackBoldFg     = color.New(color.Bold, color.FgBlack)
+	blackFg         = color.New(0, color.FgBlack)
+	blueBoldFg      = color.New(color.Bold, color.FgBlue)
+	blueFg          = color.New(0, color.FgBlue)
+	cyanBoldFg      = color.New(color.Bold, color.FgCyan)
+	cyanFg          = color.New(0, color.FgCyan)
+	greenBoldFg     = color.New(color.Bold, color.FgGreen)
+	greenFg         = color.New(0, color.FgGreen)
+	greyBoldFg      = color.New(color.Bold, color.FgHiBlack)
+	greyFg          = color.New(0, color.FgHiBlack)
+	hiBlueBoldFg    = color.New(color.Bold, color.FgHiBlue)
+	hiBlueFg        = color.New(0, color.FgHiBlue)
+	hiCyalBoldFg    = color.New(color.Bold, color.FgHiCyan)
+	hiCyanFg        = color.New(0, color.FgHiCyan)
+	hiGreenBoldFg   = color.New(color.Bold, color.FgHiGreen)
+	hiGreenFg       = color.New(0, color.FgHiGreen)
+	hiMagentaBoldFg = color.New(color.Bold, color.FgHiMagenta)
+	hiMagentaFg     = color.New(0, color.FgHiMagenta)
+	hiRedBoldFg     = color.New(color.Bold, color.FgHiRed)
+	hiRedFg         = color.New(0, color.FgHiRed)
+	hiWhiteBoldFg   = color.New(color.Bold, color.FgHiWhite)
+	hiWhiteFg       = color.New(0, color.FgHiWhite)
+	hiYellowBoldFg  = color.New(color.Bold, color.FgHiYellow)
+	hiYellowFg      = color.New(0, color.FgHiYellow)
+	magentaBoldFg   = color.New(color.Bold, color.FgMagenta)
+	magentaFg       = color.New(0, color.FgMagenta)
+	redBoldFg       = color.New(color.Bold, color.FgRed)
+	redFg           = color.New(0, color.FgRed)
+	whiteBoldFg     = color.New(color.Bold, color.FgWhite)
+	whiteFg         = color.New(0, color.FgWhite)
+	yellowBoldFg    = color.New(color.Bold, color.FgYellow)
+	yellowFg        = color.New(0, color.FgYellow)
 )
 
 // Default String Type Colors
@@ -228,6 +244,54 @@ func StringToColor(colorString string, bold bool) *color.Color {
 		} else {
 			return blackBoldFg
 		}
+	case "grey":
+		if !bold {
+			return greyFg
+		} else {
+			return greyBoldFg
+		}
+	case "hiblue":
+		if !bold {
+			return hiBlueFg
+		} else {
+			return hiBlueBoldFg
+		}
+	case "hicyan":
+		if !bold {
+			return hiCyanFg
+		} else {
+			return hiCyalBoldFg
+		}
+	case "higreen":
+		if !bold {
+			return hiGreenFg
+		} else {
+			return hiGreenBoldFg
+		}
+	case "himagenta":
+		if !bold {
+			return hiMagentaFg
+		} else {
+			return hiMagentaBoldFg
+		}
+	case "hired":
+		if !bold {
+			return hiRedFg
+		} else {
+			return hiRedBoldFg
+		}
+	case "hiwhite":
+		if !bold {
+			return hiWhiteFg
+		} else {
+			return hiWhiteBoldFg
+		}
+	case "hiyellow":
+		if !bold {
+			return hiYellowFg
+		} else {
+			return hiYellowBoldFg
+		}
 	default:
 		if !bold {
 			return whiteFg
@@ -237,7 +301,7 @@ func StringToColor(colorString string, bold bool) *color.Color {
 	}
 }
 
-func OrderColumns(showInfoFlags bool, id string, completed string, info string, due string, status string, subject string) []string {
+func OrderColumns(showStatus bool, id string, completed string, info string, due string, status string, subject string) []string {
 	statusIndex := -1
 	columnList := []string{"", "", "", "", "", ""}
 	theme, err := GetTheme()
@@ -266,7 +330,7 @@ func OrderColumns(showInfoFlags bool, id string, completed string, info string, 
 		}
 	}
 
-	if !showInfoFlags {
+	if !showStatus {
 		RemoveFromStringArray(columnList, statusIndex)
 	}
 

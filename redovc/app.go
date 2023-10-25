@@ -10,7 +10,7 @@ import (
 
 const (
 	// Current version of redovc.
-	VERSION string = "1.7.5"
+	VERSION string = "1.7.6"
 
 	DATE_FORMAT string = "2006-01-02"
 )
@@ -291,7 +291,7 @@ func (a *App) ArchiveCompleted() {
 }
 
 // ListTodos will list all todos.
-func (a *App) ListTodos(input string, showNotes bool, showInfoFlags bool) {
+func (a *App) ListTodos(input string, showNotes bool, showStatus bool) {
 	a.load()
 
 	parser := &InputParser{}
@@ -305,7 +305,7 @@ func (a *App) ListTodos(input string, showNotes bool, showInfoFlags bool) {
 	todoFilter := &TodoFilter{Todos: a.TodoList.Todos(), Filter: filter}
 	grouped := a.getGroups(input, todoFilter.ApplyFilter())
 
-	a.Printer.Print(grouped, showNotes, showInfoFlags)
+	a.Printer.Print(grouped, showNotes, showStatus)
 }
 
 // PrioritizeTodo will prioritize a todo.
