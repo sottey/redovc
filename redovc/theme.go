@@ -339,20 +339,6 @@ func OrderColumns(showStatus bool, id string, completed string, info string, due
 
 const themeTemplate = `
 {
-    "Columns":
-    [
-        {
-            "desc": "Column1 Desc",
-            "columnname": "column1",
-            "index":0
-        },
-        {
-            "desc": "Column2 Desc",
-            "columnname": "column2",
-            "index":1
-        }
-    ],
-
     "Colors":
     [
         {
@@ -492,6 +478,39 @@ const themeTemplate = `
             "name": "taskTextTagWordPriColor",
             "color": "green",
             "bold": true
+        }
+    ],
+	"Columns":
+    [
+        {
+            "desc": "Task ID",
+            "columnname": "id",
+            "index":0
+        },
+        {
+            "desc": "Completed column",
+            "columnname": "completed",
+            "index":1
+        },
+        {
+            "desc": "Information - Priority, Note and Archived flags",
+            "columnname": "information",
+            "index":2
+        },
+        {
+            "desc": "Task Due date",
+            "columnname": "due",
+            "index":3
+        },
+        {
+            "desc": "Task status",
+            "columnname": "status",
+            "index":4
+        },
+        {
+            "desc": "Task subject - Setting this to something other than index 5 could really mess up the screen",
+            "columnname": "subject",
+            "index":5
         }
     ]
 }
