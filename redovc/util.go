@@ -107,6 +107,7 @@ func isPastDue(t time.Time) bool {
 func JSONtoCSV(jsonData []byte) {
 	b := &bytes.Buffer{}
 	wr := json2csv.NewCSVWriter(b)
+	wr.HeaderStyle = json2csv.SlashStyle
 	var x []map[string]interface{}
 
 	// unMarshall json
@@ -118,13 +119,13 @@ func JSONtoCSV(jsonData []byte) {
 	// convert json to CSV
 	csv, err := json2csv.JSON2CSV(x)
 	if err != nil {
-		fmt.Printf("Error reading .todos.json file: %v\n", err)
+		fmt.Printf("Error converting json to csv: %v\n", err)
 	}
 
 	// CSV bytes convert & writing...
 	err = wr.WriteCSV(csv)
 	if err != nil {
-		fmt.Printf("Error reading .todos.json file: %v\n", err)
+		fmt.Printf("Error displaying csv: %v\n", err)
 	}
 	wr.Flush()
 	got := b.String()

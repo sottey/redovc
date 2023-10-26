@@ -3,6 +3,8 @@ package redovc
 import (
 	"fmt"
 	"os"
+	"os/exec"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
@@ -219,6 +221,57 @@ func (a *App) Export(exportType string) {
 		fmt.Println("Invalid export format specified: '" + exportType + "'")
 		return
 	}
+}
+
+// Import imports data from a specified format
+func (a *App) Import(filename string) {
+	// Open the file
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+
+	// Get the filename extension
+	extension := filepath.Ext(file.Name())
+	fmt.Println(extension)
+	file.Close()
+
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return
+	}
+
+	switch extension {
+	case ".json":
+		ImportJSON(string(data))
+		return
+	case ".csv":
+		ImportCSV(string(data))
+		return
+	case ".text", ".txt":
+		ImportText(string(data))
+		return
+	default:
+		fmt.Println("Invalid or missing import file")
+		return
+	}
+}
+
+func ImportJSON(data string) error {
+	fmt.Println("Not implemented")
+	return nil
+}
+
+func ImportCSV(data string) error {
+	fmt.Println("Not implemented")
+	return nil
+}
+
+func ImportText(data string) error {
+	fmt.Println("Not implemented")
+	return nil
 }
 
 // AddNote adds a note to a todo.
@@ -439,4 +492,15 @@ func (a *App) getGroups(input string, todos []*Todo) *GroupedTodos {
 		grouped = grouper.GroupByNothing(todos)
 	}
 	return grouped
+}
+
+func (a *App) BulkEdit() {
+	targetFile := "~/.todos.json"
+
+	if a.TodoStore.LocalTodosFileExists() {
+		targetFile = "./.todos.json"
+	}
+
+	cmd := exec.Command("open", targetFile)
+	cmd.Run()
 }
