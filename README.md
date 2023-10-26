@@ -26,6 +26,9 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 * Auto completion for various shells can be generated
 * A task status can be specified (doing, waiting, evening, etc)
 
+## Downloading
+Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redo.vc/releases)
+* NOTE: If you are using Linux, the latest version to work correctly is 1.7.4, the latest has display issues. 
 
 ## Future Plans
 * ~~Theming capabilities~~
