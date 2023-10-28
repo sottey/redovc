@@ -10,7 +10,7 @@ func init() {
 		initCmdDesc     = "Initializes a new todo list in the current directory"
 		initCmdLongDesc = `Initializes a new todo list in the current directory.
 
-This will create a .todos.json in the directory you're in.  You can then start adding todos to it.`
+This will create a .redovc.todos.json in the directory you're in.  You can then start adding todos to it.`
 	)
 
 	var initCmd = &cobra.Command{

@@ -8,10 +8,10 @@ import (
 )
 
 // TodosJSONFile is the filename to store todos in
-const TodosJSONFile = ".todos.json"
+const TodosJSONFile = ".redovc.todos.json"
 
 // TodosThemeFile is the filename containing theme information
-const TodosThemeFile = ".todos.theme.json"
+const TodosThemeFile = ".redovc.theme.json"
 
 // FileStore is the main struct of this file.
 type FileStore struct {
@@ -23,10 +23,10 @@ func NewFileStore() *FileStore {
 	return &FileStore{Loaded: false}
 }
 
-// Initialize is initializing a new .todos.json file.
+// Initialize is initializing a new .redovc.todos.json file.
 func (f *FileStore) Initialize() {
 	if f.LocalTodosFileExists() {
-		fmt.Println("It looks like a .todos.json file already exists!  Doing nothing.")
+		fmt.Println("It looks like a .redovc.todos.json file already exists!  Doing nothing.")
 		os.Exit(0)
 	}
 	if err := os.WriteFile(TodosJSONFile, []byte("[]"), 0644); err != nil {
@@ -35,7 +35,7 @@ func (f *FileStore) Initialize() {
 	}
 
 	if f.LocalThemeFileExists() {
-		fmt.Println("It looks like a .todos.theme.json file already exists!  Doing nothing.")
+		fmt.Println("It looks like a .redovc.theme.json file already exists!  Doing nothing.")
 		os.Exit(0)
 	}
 
@@ -46,7 +46,7 @@ func (f *FileStore) Initialize() {
 	}
 }
 
-// Returns if a local .todos.json file exists in the current dir.
+// Returns if a local .redovc.todos.json file exists in the current dir.
 func (f *FileStore) LocalTodosFileExists() bool {
 	dir, _ := os.Getwd()
 	localrepo := filepath.Join(dir, TodosJSONFile)
@@ -54,7 +54,7 @@ func (f *FileStore) LocalTodosFileExists() bool {
 	return err == nil
 }
 
-// Returns if a local .todos.theme.json file exists in the current dir.
+// Returns if a local .redovc.theme.json file exists in the current dir.
 func (f *FileStore) LocalThemeFileExists() bool {
 	dir, _ := os.Getwd()
 	localrepo := filepath.Join(dir, TodosThemeFile)
@@ -62,7 +62,7 @@ func (f *FileStore) LocalThemeFileExists() bool {
 	return err == nil
 }
 
-// Load is loading a .todos.json file, either from cwd, or the home directory
+// Load is loading a .redovc.todos.json file, either from cwd, or the home directory
 func (f *FileStore) Load() ([]*Todo, error) {
 	data, err := os.ReadFile(f.GetLocation())
 	if err != nil {
@@ -84,7 +84,7 @@ func (f *FileStore) Load() ([]*Todo, error) {
 	return todos, nil
 }
 
-// Save is saving a .todos.json file.
+// Save is saving a .redovc.todos.json file.
 func (f *FileStore) Save(todos []*Todo) {
 	// ensure UUID is set for todos at save time
 	for _, todo := range todos {
@@ -100,7 +100,7 @@ func (f *FileStore) Save(todos []*Todo) {
 	}
 }
 
-// GetLocation is returning the location of the .todos.json file.
+// GetLocation is returning the location of the .redovc.todos.json file.
 func (f *FileStore) GetLocation() string {
 	if f.LocalTodosFileExists() {
 		dir, _ := os.Getwd()

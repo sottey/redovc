@@ -495,10 +495,10 @@ func (a *App) getGroups(input string, todos []*Todo) *GroupedTodos {
 }
 
 func (a *App) BulkEdit() {
-	targetFile := "~/.todos.json"
+	targetFile := "~/.redovc.todos.json"
 
 	if a.TodoStore.LocalTodosFileExists() {
-		targetFile = "./.todos.json"
+		targetFile = "./.redovc.todos.json"
 	}
 
 	cmd := exec.Command("open", targetFile)

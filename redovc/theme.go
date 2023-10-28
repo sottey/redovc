@@ -120,7 +120,7 @@ func GetTheme() (Theme, error) {
 	return theme, nil
 }
 
-// GetLocation is returning the location of the .todos.theme.json file.
+// GetLocation is returning the location of the .redovc.theme.json file.
 func GetLocation() string {
 	if LocalThemeFileExists() {
 		dir, _ := os.Getwd()
@@ -130,7 +130,7 @@ func GetLocation() string {
 	return fmt.Sprintf("%s/%s", UserDataDir(), TodosThemeFile)
 }
 
-// Returns if a local .todos..theme.json file exists in the current dir.
+// Returns if a local .redovc.theme.json file exists in the current dir.
 func LocalThemeFileExists() bool {
 	dir, _ := os.Getwd()
 	localrepo := filepath.Join(dir, TodosThemeFile)

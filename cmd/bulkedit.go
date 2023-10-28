@@ -7,7 +7,7 @@ import (
 
 func init() {
 	var (
-		bulkeditCmdExample = `To edit the .todos.json file:
+		bulkeditCmdExample = `To edit the .redovc.todos.json file:
     redovc bulkedit
     redovc be`
 	)
@@ -16,8 +16,8 @@ func init() {
 		Use:     `bulkedit`,
 		Aliases: []string{"be"},
 		Example: bulkeditCmdExample,
-		Long:    "bulkedit will open either the .todos.json file in the current directory or, if missing, the .todos.json file in the home directory",
-		Short:   "Edit raw .todos.json file",
+		Long:    "bulkedit will open either the .redovc.todos.json file in the current directory or, if missing, the .redovc.todos.json file in the home directory",
+		Short:   "Edit raw .redovc.todos.json file",
 		Run: func(cmd *cobra.Command, args []string) {
 			redovc.NewApp().BulkEdit()
 		},

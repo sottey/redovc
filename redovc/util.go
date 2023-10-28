@@ -113,7 +113,7 @@ func JSONtoCSV(jsonData []byte) {
 	// unMarshall json
 	err := json.Unmarshal(jsonData, &x)
 	if err != nil {
-		fmt.Printf("Error reading .todos.json file: %v\n", err)
+		fmt.Printf("Error reading .redovc.todos.json file: %v\n", err)
 	}
 
 	// convert json to CSV

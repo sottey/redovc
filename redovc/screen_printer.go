@@ -98,9 +98,9 @@ func (f *ScreenPrinter) formatID(ID int, isPriority bool) string {
 func (f *ScreenPrinter) formatCompleted(completed bool) string {
 	if completed {
 		if f.UnicodeSupport {
-			return completedColor.Sprint("[✔]")
+			return completedColor.Add(color.CrossedOut).Sprint("[✔]")
 		}
-		return completedColor.Sprint("[x]")
+		return completedColor.Add(color.CrossedOut).Sprint("[x]")
 	}
 	return completedColor.Sprint("[ ]")
 }
