@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/sottey/redo.vc/redovc"
+	"github.com/sottey/redovc/redovc"
 	"github.com/spf13/cobra"
 )
 

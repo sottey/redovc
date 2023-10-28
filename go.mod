@@ -1,4 +1,4 @@
-module github.com/sottey/redo.vc
+module github.com/sottey/redovc
 
 go 1.21
 

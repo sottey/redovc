@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/sottey/redo.vc/redovc"
+	"github.com/sottey/redovc/redovc"
 	"github.com/spf13/cobra"
 )
 
@@ -11,7 +11,7 @@ func init() {
 	var (
 		importCmdDesc    = "Imports todos"
 		longDesc         = "Inports todos"
-		importCmdExample = `  Imports a list of todos. Note that there are specific formats required. See https://redo.vc/cmd/import.md for details
+		importCmdExample = `  Imports a list of todos. Note that there are specific formats required. See https://redovc/cmd/import.md for details
 	Imports todos from a CSV file:
     redovc import ./import.csv
 

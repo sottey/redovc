@@ -1,12 +1,12 @@
-# redo.vc
+# redovc
 ---
-Redo.vc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
+redovc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
 
 ## Getting Started
-To learn about available redo.vc commands, see the [usage page](https://redo.vc/usage/)
+To learn about available redovc commands, see the [usage page](https://redovc/usage/)
 
 ## Features
-* [NEW] [Theming capabilities](https://redo.vc/theming) - Change all the colors and column order on the fly!
+* [NEW] [Theming capabilities](https://redovc/theming) - Change all the colors and column order on the fly!
 * [NEW] Adding additional due strings (End of quarter, End of Month)
 * Tasks can be assigned to a project
 * Projects can be created dynamically while creating todos
@@ -27,7 +27,7 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 * A task status can be specified (doing, waiting, evening, etc)
 
 ## Downloading
-Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redo.vc/releases)
+Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redovc/releases)
 
 ## Future Plans
 * ~~Theming capabilities~~
@@ -36,12 +36,12 @@ Find the installation for your device in the releases section of the GitHub proj
 * Web UI
 * Importing from common formats
 * Config file defaults
-* Whatever you would like to see! [Let me know](https://github.com/sottey/redo.vc/discussions)
+* Whatever you would like to see! [Let me know](https://github.com/sottey/redovc/discussions)
 
 
 ## Building
 
-Redo.vc is available for most configurations. Go to the relase page, download the proper archive for your device. 
+redovc is available for most configurations. Go to the relase page, download the proper archive for your device. 
 
 Once the file has downloaded, extract the binary and put it somewhere that is accessible from your terminal.
 
@@ -64,4 +64,4 @@ rake build
 
 ## License
 
-Redo.vc uses the MIT License. Please see the [redo.vc license](https://github.com/sottey/redo.vc/blob/main/LICENSE) for details
+redovc uses the MIT License. Please see the [redovc license](https://github.com/sottey/redovc/blob/main/LICENSE) for details
