@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/sottey/redovc/redovc"
+	redovc "github.com/sottey/redovc/lib"
 	"github.com/spf13/cobra"
 )
 

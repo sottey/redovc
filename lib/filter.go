@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // Filter holds the parsed filtering results from an input string
 type Filter struct {

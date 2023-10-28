@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // EditTodo edits a todo based upon a filter
 func EditTodo(todo *Todo, todoList *TodoList, filter *Filter) error {

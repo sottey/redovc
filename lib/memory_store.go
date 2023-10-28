@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // MemoryStore is the main struct of this file.
 type MemoryStore struct {

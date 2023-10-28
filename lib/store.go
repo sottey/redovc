@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // Store is the interface for redovc todos.
 type Store interface {

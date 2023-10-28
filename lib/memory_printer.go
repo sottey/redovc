@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // MemoryPrinter is the main struct of this file.
 type MemoryPrinter struct {

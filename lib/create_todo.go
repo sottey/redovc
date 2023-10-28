@@ -1,4 +1,4 @@
-package redovc
+package lib
 
 // CreateTodo will create a TodoItem from a Filter
 func CreateTodo(filter *Filter) (*Todo, error) {
