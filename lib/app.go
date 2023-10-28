@@ -12,7 +12,7 @@ import (
 
 const (
 	// Current version of redovc.
-	VERSION string = "1.7.8"
+	VERSION string = "1.7.9"
 
 	DATE_FORMAT string = "2006-01-02"
 )
