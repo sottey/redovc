@@ -41,14 +41,14 @@ func AddTodoIfNotThere(arr []*Todo, item *Todo) []*Todo {
 	return arr
 }
 
-// UserHomeDir returns the home dir of the current user.
-func UserHomeDir() string {
+// UserDataDir returns the redovc data dir of the current user.
+func UserDataDir() string {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	return home
+	return home + "/.rvc/redovc"
 }
 
 func contains(s []int, e int) bool {

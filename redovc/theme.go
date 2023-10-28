@@ -127,7 +127,7 @@ func GetLocation() string {
 		localrepo := filepath.Join(dir, TodosThemeFile)
 		return localrepo
 	}
-	return fmt.Sprintf("%s/%s", UserHomeDir(), TodosThemeFile)
+	return fmt.Sprintf("%s/%s", UserDataDir(), TodosThemeFile)
 }
 
 // Returns if a local .todos..theme.json file exists in the current dir.

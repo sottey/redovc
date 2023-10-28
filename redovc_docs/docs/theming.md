@@ -4,7 +4,7 @@
 Command shells have very limited color abilities, but I decided it would be good to not impose my color scheme on everyone who uses redovc.... So, theming.
 
 ## Theme file
-A theme file can live in your home directory and it will be used as the default. You can also have theme files in other directories and when you are in that directory, that theme will be used.
+A theme file can live in your home data directory (~/.rvc/redovc) and it will be used as the default. You can also have theme files in other directories and when you are in that directory, that theme will be used.
 
 The theme file must be named .todos.theme.json and the contents are used to describe how different sections of the redovc list command presents data.
 

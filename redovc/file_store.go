@@ -107,5 +107,5 @@ func (f *FileStore) GetLocation() string {
 		localrepo := filepath.Join(dir, TodosJSONFile)
 		return localrepo
 	}
-	return fmt.Sprintf("%s/%s", UserHomeDir(), TodosJSONFile)
+	return fmt.Sprintf("%s/%s", UserDataDir(), TodosJSONFile)
 }
