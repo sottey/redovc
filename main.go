@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/sottey/redovc/cmd"
+	"github.com/sottey/redo.vc/cmd"
 )
 
 func main() {

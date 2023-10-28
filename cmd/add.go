@@ -3,7 +3,7 @@ package cmd
 import (
 	"strings"
 
-	redovc "github.com/sottey/redovc/lib"
+	redovc "github.com/sottey/redo.vc/lib"
 	"github.com/spf13/cobra"
 )
 
