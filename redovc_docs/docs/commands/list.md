@@ -94,6 +94,10 @@ soy - Start Of year (next jan1)
 
 `redovc list status:-started,-finished`
 
+#### Filtering by a search string:
+
+`redovc list search:[searchstring]`
+
 #### Filtering by projects or tags:
 
 ##### Project and tag filtering are very similar:

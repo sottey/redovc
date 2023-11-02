@@ -6,6 +6,7 @@ Redo.vc is a tool for command line fans that allows you to track your tasks. It 
 To learn about available redo.vc commands, see the [usage page](https://redo.vc/usage/)
 
 ## Features
+* [NEW] [Search capabilities](https://redo.vc/commands/list/) - Search for strings in all of your todos when using the list command
 * [NEW] [Theming capabilities](https://redo.vc/theming) - Change all the colors and column order on the fly!
 * [NEW] Adding additional due strings (End of quarter, End of Month)
 * Tasks can be assigned to a project
@@ -30,8 +31,9 @@ To learn about available redo.vc commands, see the [usage page](https://redo.vc/
 Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redo.vc/releases)
 
 ## Future Plans
-* ~~Theming capabilities~~
-* ~~Adding additional due strings (End of quarter, End of Month)~~
+* [DONE] Search capabilities
+* [DONE] Theming capabilities
+* [DONE] Adding additional due strings (End of quarter, End of Month)
 * Syncing via cloud providers (Google Drive, iCloud, Dropbox, etc.)
 * Web UI
 * Importing from common formats

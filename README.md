@@ -1,12 +1,13 @@
-# redovc
+# redo.vc
 ---
-redovc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
+Redo.vc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
 
 ## Getting Started
-To learn about available redovc commands, see the [usage page](https://redovc/usage/)
+To learn about available redo.vc commands, see the [usage page](https://redo.vc/usage/)
 
 ## Features
-* [NEW] [Theming capabilities](https://redovc/theming) - Change all the colors and column order on the fly!
+* [NEW] [Search capabilities](https://redo.vc/commands/list/) - Search for strings in all of your todos when using the list command
+* [NEW] [Theming capabilities](https://redo.vc/theming) - Change all the colors and column order on the fly!
 * [NEW] Adding additional due strings (End of quarter, End of Month)
 * Tasks can be assigned to a project
 * Projects can be created dynamically while creating todos
@@ -27,21 +28,22 @@ To learn about available redovc commands, see the [usage page](https://redovc/us
 * A task status can be specified (doing, waiting, evening, etc)
 
 ## Downloading
-Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redovc/releases)
+Find the installation for your device in the releases section of the GitHub project [here](https://github.com/sottey/redo.vc/releases)
 
 ## Future Plans
-* ~~Theming capabilities~~
-* ~~Adding additional due strings (End of quarter, End of Month)~~
+* [DONE] Search capabilities
+* [DONE] Theming capabilities
+* [DONE] Adding additional due strings (End of quarter, End of Month)
 * Syncing via cloud providers (Google Drive, iCloud, Dropbox, etc.)
 * Web UI
 * Importing from common formats
 * Config file defaults
-* Whatever you would like to see! [Let me know](https://github.com/sottey/redovc/discussions)
+* Whatever you would like to see! [Let me know](https://github.com/sottey/redo.vc/discussions)
 
 
 ## Building
 
-redovc is available for most configurations. Go to the relase page, download the proper archive for your device. 
+Redo.vc is available for most configurations. Go to the relase page, download the proper archive for your device. 
 
 Once the file has downloaded, extract the binary and put it somewhere that is accessible from your terminal.
 
@@ -64,4 +66,4 @@ rake build
 
 ## License
 
-redovc uses the MIT License. Please see the [redovc license](https://github.com/sottey/redovc/blob/main/LICENSE) for details
+Redo.vc uses the MIT License. Please see the [redo.vc license](https://github.com/sottey/redo.vc/blob/main/LICENSE) for details
