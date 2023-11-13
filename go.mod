@@ -11,12 +11,9 @@ require (
 	github.com/yukithm/json2csv v0.1.2
 )
 
-require github.com/leesper/holmes v0.0.0-20190916004209-307d8a307864 // indirect
-
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/iotdog/json2table v0.0.0-20170917130055-a02b9756f9ab
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
