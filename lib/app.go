@@ -3,11 +3,12 @@ package lib
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/skratchdot/open-golang/open"
 )
 
 const (
@@ -212,7 +213,7 @@ func (a *App) Export(exportType string) {
 		fmt.Printf("%v\n", string(jsonData))
 		return
 	case "csv":
-		JSONtoCSV(jsonData)
+		fmt.Printf("%v\n", JSONtoCSV(jsonData))
 		return
 	case "text", "txt":
 		fmt.Println("text format not yet implemented")
@@ -495,12 +496,23 @@ func (a *App) getGroups(input string, todos []*Todo) *GroupedTodos {
 }
 
 func (a *App) BulkEdit() {
-	targetFile := "~/.redovc.todos.json"
+	targetFile := "~/.rvc/redovc/.redovc.todos.json"
 
 	if a.TodoStore.LocalTodosFileExists() {
 		targetFile = "./.redovc.todos.json"
 	}
 
-	cmd := exec.Command("open", targetFile)
-	cmd.Run()
+	// in case it is a symlink...
+	targetFile, _ = os.Readlink(targetFile)
+
+	fmt.Println(targetFile)
+
+	err := open.Run(targetFile)
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+	}
+
+	//cmd := exec.Command(targetFile)
+	// err := cmd.Start()
+	// fmt.Printf("err: %v\n", err)
 }
