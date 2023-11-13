@@ -1,5 +1,5 @@
-# redo.vc
----
+![redovc_logo](https://github.com/sottey/redo.vc/assets/8494620/cc081562-3b4f-48f2-88bb-7133676919da)
+
 Redo.vc is a tool for command line fans that allows you to track your tasks. It is a full featured todo manager with tagging, projects, recurring tasks and much more, all stored in a JSON file so it is super portable and tooling new apps for the data format is super easy.
 
 ## Getting Started
