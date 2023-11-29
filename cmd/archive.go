@@ -36,6 +36,7 @@ func init() {
 		Aliases: []string{"ar"},
 		Example: archiveCmdExample,
 		Short:   "Archives a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			redovc.NewApp().ArchiveTodo(strings.Join(args, " "))
 		},
@@ -46,6 +47,7 @@ func init() {
 		Aliases: []string{"uar"},
 		Example: archiveCmdExample,
 		Short:   "Un-archives a todo.",
+		Args:    cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			redovc.NewApp().UnarchiveTodo(strings.Join(args, " "))
 		},

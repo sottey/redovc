@@ -149,6 +149,7 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 	}
 
 	rootCmd.AddCommand(listCmd)
+	// these are --FLAG flags
 	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in redovc output (default: true)")
 	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. (default: false)")

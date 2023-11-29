@@ -13,7 +13,7 @@ import (
 
 const (
 	// Current version of redovc.
-	VERSION string = "1.7.10"
+	VERSION string = "1.7.11"
 
 	DATE_FORMAT string = "2006-01-02"
 )
@@ -503,7 +503,7 @@ func (a *App) BulkEdit() {
 	}
 
 	// in case it is a symlink...
-	targetFile, _ = os.Readlink(targetFile)
+	// targetFile, _ = os.Readlink(targetFile)
 
 	fmt.Println(targetFile)
 
@@ -511,8 +511,4 @@ func (a *App) BulkEdit() {
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 	}
-
-	//cmd := exec.Command(targetFile)
-	// err := cmd.Start()
-	// fmt.Printf("err: %v\n", err)
 }

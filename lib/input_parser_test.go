@@ -125,7 +125,7 @@ func TestInvalidRecurrence(t *testing.T) {
 		t.Fail()
 	}
 
-	assert.Equal(err.Error(), "i could not understand the recurrence you gave me: 'blah'")
+	assert.Equal(err.Error(), "I could not understand the recurrence you gave me: 'blah'")
 }
 
 func TestNoneRecurrence(t *testing.T) {

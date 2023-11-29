@@ -199,7 +199,7 @@ func (p *InputParser) Parse(input string) (*Filter, error) {
 			r := &Recurrence{}
 
 			if !r.ValidRecurrence(filter.Recur) {
-				return filter, fmt.Errorf("i could not understand the recurrence you gave me: '%s'", filter.Recur)
+				return filter, fmt.Errorf("I could not understand the recurrence you gave me: '%s'", filter.Recur)
 			}
 
 			if filter.Recur == "none" {

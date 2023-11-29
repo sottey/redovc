@@ -9,6 +9,7 @@ const (
 	Daily    = "daily"
 	Weekdays = "weekdays"
 	Weekly   = "weekly"
+	Biweekly = "biweekly"
 	Monthly  = "monthly"
 	Yearly   = "yearly"
 )
@@ -24,6 +25,7 @@ func (r *Recurrence) ValidRecurrence(input string) bool {
 		Daily,
 		Weekdays,
 		Weekly,
+		Biweekly,
 		Monthly,
 		Yearly:
 		return true
@@ -76,6 +78,8 @@ func (r *Recurrence) nextRecurrence(dueDate time.Time, completedDate time.Time, 
 		return r.findNextWeekDay(dueDate, completedDate)
 	case Weekly:
 		return r.findNextWeek(dueDate, completedDate)
+	case Biweekly:
+		return r.findTwoWeeksOut(dueDate, completedDate)
 	case Monthly:
 		return r.findNextMonth(dueDate, completedDate)
 	case Yearly:
@@ -114,6 +118,18 @@ func (r *Recurrence) findNextWeek(dueDate time.Time, completedDate time.Time) ti
 	dueDate = dueDate.AddDate(0, 0, 1)
 	for {
 		if dueDate.Weekday() != weekday || dueDate.Before(completedDate.AddDate(0, 0, 1)) {
+			dueDate = dueDate.AddDate(0, 0, 1)
+		} else {
+			return dueDate
+		}
+	}
+}
+
+func (r *Recurrence) findTwoWeeksOut(dueDate time.Time, completedDate time.Time) time.Time {
+	weekday := dueDate.Weekday()
+	dueDate = dueDate.AddDate(0, 0, 1)
+	for {
+		if dueDate.Weekday() != weekday || dueDate.Before(completedDate.AddDate(0, 0, 7)) {
 			dueDate = dueDate.AddDate(0, 0, 1)
 		} else {
 			return dueDate
