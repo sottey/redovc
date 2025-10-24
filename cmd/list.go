@@ -126,7 +126,7 @@ func init() {
   Indicator flags
   ---------------
 
-  If you pass --showinfo or --showInfo=true as a flag, you'll see an extra column when listing todos.
+  If you pass --showinfo or --showinfo=true as a flag, you'll see an extra column when listing todos.
 
   P = Todo is prioritized
   N = Todo has notes attached
@@ -150,8 +150,8 @@ When listing todos, you can apply powerful filters, and perform grouping.`
 
 	rootCmd.AddCommand(listCmd)
 	// these are --FLAG flags
-	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in redovc output (default: true)")
-	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in redovc output (default: true)")
-	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing. (default: false)")
+	listCmd.Flags().BoolVarP(&unicodeSupport, "unicode", "", true, "Allows unicode support in redovc output")
+	listCmd.Flags().BoolVarP(&colorSupport, "color", "", true, "Allows color in redovc output")
+	listCmd.Flags().BoolVarP(&listNotes, "notes", "", false, "Show a todo's notes when listing")
 	listCmd.Flags().BoolVarP(&showStatus, "status", "", false, "Show a todo's status")
 }

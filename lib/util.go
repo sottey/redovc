@@ -29,7 +29,7 @@ func AddIfNotThere(arr []string, items []string) []string {
 	return arr
 }
 
-// AddTodoIfNotThere is appending an todo item to an todo array if the item is not already present.
+// AddTodoIfNotThere is appending a todo item to a todo array if the item is not already present.
 func AddTodoIfNotThere(arr []*Todo, item *Todo) []*Todo {
 	there := false
 	for _, arrItem := range arr {

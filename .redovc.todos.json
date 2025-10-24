@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "uuid": "f4bf2f50-a1e9-467c-8c52-c09f73204481",
+        "subject": "this is a test",
+        "projects": [],
+        "tags": [],
+        "due": "",
+        "completed": false,
+        "completed_date": "",
+        "status": "",
+        "archived": false,
+        "is_priority": false,
+        "notes": null,
+        "recur": "",
+        "recur_until": "",
+        "prev_recur_todo_uuid": ""
+    }
+]

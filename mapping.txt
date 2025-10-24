@@ -1,0 +1,36 @@
+REDOVC                                                  VIKUNJA
+ID int `json:"id"`	                                    ID int `json:"id"`
+UUID string `json:"uuid"`	                            Identifier string `json:"identifier"`
+Subject string `json:"subject"`	                        Title string `json:"title"`
+Projects []string `json:"projects"`	                    ProjectID int `json:"project_id"`
+Tags []string `json:"tags"`	                            Labels []interface{} `json:"labels"`
+Due string `json:"due"`	                                DueDate string `json:"due_date"`
+Completed bool `json:"completed"`	                    Done bool `json:"done"`
+CompletedDate string `json:"completed_date"`	        DoneAt string `json:"done_at"`
+IsPriority bool `json:"is_priority"`	                Priority int `json:"priority"`
+Notes []string `json:"notes"`	                        Description string `json:"description"`
+Status string `json:"status"`	                        NOT AVAILABLE
+Archived bool `json:"archived"`	                        NOT AVAILABLE
+Recur string `json:"recur"`	                            NOT AVAILABLE
+RecurUntil string `json:"recur_until"`	                NOT AVAILABLE
+PrevRecurTodoUUID string `json:"prev_recur_todo_uuid"`	NOT AVAILABLE
+Not Available	                                        Attachments []interface{} `json:"attachments"`
+Not Available	                                        Created string `json:"created"`
+Not Available	                                        EndDate string `json:"end_date"`
+Not Available	                                        IsFavorite bool `json:"is_favorite"`
+Not Available	                                        PercentDone int `json:"percent_done"`
+Not Available	                                        RelatedTasks struct{} `json:"related_tasks"`
+Not Available	                                        Reminders []interface{} `json:"reminders"`
+Not Available	                                        RepeatAfter int `json:"repeat_after"`
+Not Available	                                        RepeatMode int `json:"repeat_mode"`
+Not Available	                                        StartDate string `json:"start_date"`
+Not Available	                                        Updated string `json:"updated"`
+Not Wanted  	                                        Assignees []interface{} `json:"assignees"`
+Not Wanted  	                                        BucketID int `json:"bucket_id"`
+Not Wanted  	                                        CoverImageAttachmentID int `json:"cover_image_attachment_id"`
+Not Wanted  	                                        CreatedBy struct{} `json:"created_by"`
+Not Wanted  	                                        HexColor string `json:"hex_color"`
+Not Wanted  	                                        Index int `json:"index"`
+Not Wanted  	                                        KanbanPosition int `json:"kanban_position"`
+Not Wanted  	                                        Position int `json:"position"`
+Not Wanted  	                                        Subscription struct{} `json:"subscription"`

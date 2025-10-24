@@ -1,6 +1,6 @@
 pushd .
 
-cd ~/go/src/projects/redo.vc
+cd ~/projects/redovc
 
 go build -o redovc
 
